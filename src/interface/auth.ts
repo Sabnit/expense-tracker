@@ -1,6 +1,6 @@
 export interface IUser {
-  fname: string;
-  lname: string;
-  email: string;
-  password: string;
+  FName: string;
+  LName: string;
+  Email: string;
+  Password: string;
 }
