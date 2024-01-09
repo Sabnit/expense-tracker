@@ -25,7 +25,7 @@
               <div class="card-body p-md-5">
                 <div class="row justify-content-center">
                   <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-                    <form class="needs-validation" novalidate>
+                    <form id="login-form" class="needs-validation" novalidate>
                       <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
                         Expense Tracker
                       </p>
@@ -46,7 +46,7 @@
                           <input
                             type="email"
                             class="form-control"
-                            id="validationCustomUsername"
+                            id="validationCustomEmail"
                             aria-describedby="inputGroupPrepend"
                             required
                           />
@@ -61,13 +61,13 @@
                         <!-- Password icon -->
                         <i class="fas fa-lock fa-lg me-3 fa-fw pt-5 pb-3"></i>
                         <div class="form-outline flex-fill mb-0">
-                          <label class="form-label" for="validationCustom01">
+                          <label class="form-label" for="validationPassword">
                             Password
                           </label>
                           <input
                             type="password"
                             class="form-control"
-                            id="validationCustom01"
+                            id="validationCustomPassword"
                             required
                           />
                           <div class="invalid-feedback">
@@ -119,5 +119,6 @@
     </section>
 
     <script src="./src/validation.ts"></script>
+    <script src="./index.ts"></script>
   </body>
 </html>
