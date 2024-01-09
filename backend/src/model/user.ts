@@ -19,6 +19,7 @@ export default class UserModel extends BaseModel {
         fname: "fname",
         lname: "lname",
         email: "email",
+        password: "password",
       })
       .from("users")
       .where({ email })

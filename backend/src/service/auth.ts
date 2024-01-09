@@ -1,4 +1,5 @@
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 import config from "../config";
 import { IUser } from "../interface/auth";
@@ -24,4 +25,33 @@ export async function signup(body: IUser) {
   };
 }
 
-export const login = () => {};
+export const login = async (body: IUser) => {
+  const user = await UserModel.getByEmail(body.email);
+
+  console.log(body.password, user.password);
+
+  if (!user) {
+    throw new BadRequestError("Invalid Email or Password");
+  }
+
+  const passwordMatch = await bcrypt.compare(body.password, user.password);
+
+  console.log(passwordMatch);
+
+  if (!passwordMatch) {
+    throw new BadRequestError("Invalid Email or Password");
+  }
+
+  const accessToken = jwt.sign(user, config.jwt.accessTokenSecret!, {
+    expiresIn: config.jwt.accessTokenExpiry,
+  });
+
+  const refreshToken = jwt.sign(user, config.jwt.refreshTokenSecret!, {
+    expiresIn: config.jwt.refreshTokenExpiry,
+  });
+
+  return {
+    accessToken,
+    refreshToken,
+  };
+};

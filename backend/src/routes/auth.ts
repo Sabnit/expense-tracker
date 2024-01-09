@@ -7,6 +7,6 @@ const router = Router();
 
 router.use("/signup", validateReqBody(createUserSchema), signUp);
 
-// router.use("/login", login);
+router.use("/login", login);
 
 export default router;

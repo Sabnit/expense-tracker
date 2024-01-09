@@ -4,7 +4,7 @@ export interface IExpense extends PaginationQuery {
   title: string;
   amount: number;
   date: Date;
-  createdBy: number;
+  createdBy: string;
   categoryId: number;
 }
 

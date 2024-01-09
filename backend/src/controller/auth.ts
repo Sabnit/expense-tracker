@@ -16,4 +16,19 @@ export async function signUp(req: Request, res: Response, next: NextFunction) {
     next(error);
   }
 }
-export const login = (req: Request, res: Response) => {};
+
+export const login = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { body } = req;
+
+    const data = await authService.login(body);
+
+    return res.json(data);
+  } catch (error) {
+    next(error);
+  }
+};

@@ -10,8 +10,6 @@ const router = Router();
 
 router.get("/", getExpense);
 
-router.get("/date-range", getExpensesByDateRange);
-
 router.post("/", createExpense);
 
 router.put("/:id", updateExpense);

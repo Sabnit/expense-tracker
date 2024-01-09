@@ -11,7 +11,12 @@ export const getExpense = async (query: IExpense) => {
   const expensesPromise = ExpenseModel.getExpense({ ...pageDetails, ...query });
   const countPromise = ExpenseModel.countAll(query);
 
+  // console.log(countPromise);
+
   const [expense, count] = await Promise.all([expensesPromise, countPromise]);
+
+  console.log(expense);
+  console.log(count);
 
   const total = count.count;
   const meta = buildMeta(total, size, page);

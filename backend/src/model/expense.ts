@@ -11,13 +11,10 @@ export default class ExpenseModel extends BaseModel {
         Created_by: "created_by",
         Category_id: "category_id",
       })
-      .from("expense");
+      .from("expense")
+      .where({ Created_by: params.createdBy });
     query.offset(params.offset).limit(params.limit);
-    if (params.startDate && params.endDate) {
-      query
-        .where("startDate", "<=", params.endDate)
-        .where("endDate", ">=", params.startDate);
-    }
+
     return query;
   }
 
@@ -44,21 +41,18 @@ export default class ExpenseModel extends BaseModel {
         Created_by: "created_by",
         Category_id: "category_id",
       })
-      .from("expense")
-      .where("date", ">=", startDate)
-      .andWhere("date", "<=", endDate);
+      .from("expense");
   }
 
   static countAll(params: any) {
     const query = this.queryBuilder()
       .table("expense")
+      .where({ Created_by: params.createdBy })
       .count({ count: "id" })
       .first();
-    if (params.startDate && params.endDate) {
-      query
-        .where("startDate", "<=", params.endDate)
-        .where("endDate", ">=", params.startDate);
-    }
+
+    console.log(query);
+
     return query;
   }
 
