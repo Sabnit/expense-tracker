@@ -1,0 +1,16 @@
+.navbar {
+  height: inherit;
+  width: 100%;
+  background: white;
+  border-bottom: solid 1px #e5ebee;
+  box-shadow: 0 4px 8px 0 rgba(48, 82, 120, 0.03);
+  .title {
+    display: contents;
+  }
+  .navbar-link {
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+    padding-top: 10px;
+  }
+}
