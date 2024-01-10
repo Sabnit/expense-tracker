@@ -5,14 +5,14 @@ export default class ExpenseModel extends BaseModel {
   static async getExpense(params: any) {
     const query = this.queryBuilder()
       .select({
-        Title: "title",
-        Amount: "amount",
-        Date: "date",
-        Created_by: "created_by",
-        Category_id: "category_id",
+        title: "title",
+        amount: "amount",
+        date: "date",
+        created_by: "created_by",
+        category_id: "category_id",
       })
       .from("expense")
-      .where({ Created_by: params.createdBy });
+      .where({ created_by: params.createdBy });
     query.offset(params.offset).limit(params.limit);
 
     return query;
