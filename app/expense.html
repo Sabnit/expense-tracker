@@ -4,12 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="./assets/style/style.css" />
+    <link rel="stylesheet" href="./src/assets/style/style.css" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release-pro/v4.0.0/css/line.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release-pro/v4.0.0/css/solid.css"
     />
   </head>
   <body>
@@ -19,6 +27,8 @@
 
       <ul class="navbar-link">
         <li>Dashboard</li>
+        <li>Transaction</li>
+        <li>Income</li>
         <li>Budget</li>
       </ul>
       <!-- Profile -->
@@ -49,12 +59,93 @@
         </ul>
       </div>
     </nav>
+
     <section class="hero">
-      <div class="wallet-container">
-        <span>Wallets</span>
+      <div class="top-container">
+        <div class="add-transaction-container-button">
+          <div class="add-transaction">
+            <i class="uil uil-plus-circle"></i>
+            <button class="transaction">Add Transaction</button>
+          </div>
+        </div>
+
+        <div class="calendar-container">
+          <div class="calendar">
+            <input
+              type="date"
+              name="date"
+              id="start-calendar"
+              class="start-calendar"
+            />
+            <span>to</span>
+            <input
+              type="date"
+              name="date"
+              id="end-calendar"
+              class="end-calendar"
+            />
+          </div>
+        </div>
+
+        <div class="add-transaction-container">
+          <i class="uis uis-times-circle"></i>
+          <div class="add-transaction-items">
+            <div class="category" id="select-category">
+              <span class="title">Category</span>
+              <div class="add-category">
+                <select value="Category List" class="select-category border">
+                  <option value="select">Select Category</option>
+                </select>
+              </div>
+            </div>
+            <div class="date">
+              <span class="title">Date</span>
+              <input type="date" class="border" />
+            </div>
+            <div class="note">
+              <span class="title"> Note &lpar;optional&rpar; </span>
+              <input type="text" class="border" />
+            </div>
+            <div class="amount">
+              <span class="title">Amount</span>
+              <input type="number" class="no-spinner border" />
+            </div>
+          </div>
+          <div class="add-transaction">
+            <button class="transaction">Add Transaction</button>
+          </div>
+        </div>
       </div>
-      <div class="overview-container">
-        <div class="total-balance"></div>
+
+      <div class="balance-container">
+        <div class="balance">
+          <span class="title"> Balance </span>
+          <span class="number" id="balance-number">100</span>
+        </div>
+        <div class="expense">
+          <span class="title"> Expense</span>
+          <span class="number" id="expense-number">100</span>
+        </div>
+        <div class="income">
+          <span class="title"> Income</span>
+          <span class="number" id="income-number">100</span>
+        </div>
+      </div>
+
+      <div class="transaction-list-container">
+        <div class="date">
+          <span class="date-field" id="date-field">Jan 20,2024</span>
+        </div>
+        <ul class="transaction-list" id="transaction-list">
+          <li class="transaction-item">
+            <span class="title"> Gifts </span>
+            <span class="amount" id="amount"> 400</span>
+          </li>
+          <li class="transaction-item">
+            <span> Transport </span>
+            <span class="amount" id="amount"> 400</span>
+          </li>
+        </ul>
       </div>
     </section>
 

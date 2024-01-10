@@ -1,3 +1,114 @@
 body {
   background-color: #eee !important;
 }
+
+.hero {
+  margin: 0 auto;
+  padding: 20px 300px;
+
+  .top-container {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+
+    .add-transaction-container-button {
+      .add-transaction {
+        background-color: rgb(67, 132, 244);
+        border-radius: 4px;
+        padding: 5px;
+        .uil-plus-circle {
+          color: white;
+        }
+        .transaction {
+          color: white;
+        }
+      }
+    }
+
+    .calendar-container {
+      .calendar {
+        .start-calendar,
+        .end-calendar {
+          border: none;
+          padding: 5px 10px;
+        }
+      }
+    }
+
+    .add-transaction-container {
+      padding: 20px;
+      position: absolute;
+      background-color: white;
+      flex-direction: row;
+      width: 100%;
+      .uis-times-circle {
+        position: absolute;
+        top: -23px;
+        right: -15px;
+        font-size: 2em;
+        // color: #48abf9;
+      }
+      .add-transaction-items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        .category {
+          display: flex;
+        }
+        .category,
+        .date,
+        .note,
+        .amount {
+          display: flex;
+          flex-direction: column;
+          .title {
+            font-size: 12px;
+            color: #7b93a4;
+            padding-bottom: 3px;
+          }
+          .border {
+            padding: 5px;
+            border: 1px solid #dee2e6 !important;
+            border-radius: 4px;
+          }
+        }
+      }
+      .add-transaction {
+        padding-top: 25px;
+        display: flex;
+        justify-content: end;
+        .transaction {
+          background-color: rgb(67, 132, 244);
+          border-radius: 4px;
+          padding: 10px 15px;
+          font-weight: 600;
+          color: white;
+        }
+      }
+    }
+  }
+
+  .balance-container {
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .transaction-list-container {
+    display: none;
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 10px;
+    .date {
+      padding: 10px;
+    }
+    .transaction-list {
+      padding: 10px 20px;
+      .transaction-item {
+        padding-bottom: 12px;
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+}

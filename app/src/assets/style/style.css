@@ -129,8 +129,117 @@ table {
   border-spacing: 0;
 }
 
+button {
+  border: none;
+  background: none;
+}
+
 body {
   background-color: #eee !important;
+}
+
+.hero {
+  margin: 0 auto;
+  padding: 20px 300px;
+}
+.hero .top-container {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+}
+.hero .top-container .add-transaction-container-button .add-transaction {
+  background-color: rgb(67, 132, 244);
+  border-radius: 4px;
+  padding: 5px;
+}
+.hero .top-container .add-transaction-container-button .add-transaction .uil-plus-circle {
+  color: white;
+}
+.hero .top-container .add-transaction-container-button .add-transaction .transaction {
+  color: white;
+}
+.hero .top-container .calendar-container .calendar .start-calendar,
+.hero .top-container .calendar-container .calendar .end-calendar {
+  border: none;
+  padding: 5px 10px;
+}
+.hero .top-container .add-transaction-container {
+  padding: 20px;
+  position: absolute;
+  background-color: white;
+  flex-direction: row;
+  width: 100%;
+}
+.hero .top-container .add-transaction-container .uis-times-circle {
+  position: absolute;
+  top: -23px;
+  right: -15px;
+  font-size: 2em;
+}
+.hero .top-container .add-transaction-container .add-transaction-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.hero .top-container .add-transaction-container .add-transaction-items .category {
+  display: flex;
+}
+.hero .top-container .add-transaction-container .add-transaction-items .category,
+.hero .top-container .add-transaction-container .add-transaction-items .date,
+.hero .top-container .add-transaction-container .add-transaction-items .note,
+.hero .top-container .add-transaction-container .add-transaction-items .amount {
+  display: flex;
+  flex-direction: column;
+}
+.hero .top-container .add-transaction-container .add-transaction-items .category .title,
+.hero .top-container .add-transaction-container .add-transaction-items .date .title,
+.hero .top-container .add-transaction-container .add-transaction-items .note .title,
+.hero .top-container .add-transaction-container .add-transaction-items .amount .title {
+  font-size: 12px;
+  color: #7b93a4;
+  padding-bottom: 3px;
+}
+.hero .top-container .add-transaction-container .add-transaction-items .category .border,
+.hero .top-container .add-transaction-container .add-transaction-items .date .border,
+.hero .top-container .add-transaction-container .add-transaction-items .note .border,
+.hero .top-container .add-transaction-container .add-transaction-items .amount .border {
+  padding: 5px;
+  border: 1px solid #dee2e6 !important;
+  border-radius: 4px;
+}
+.hero .top-container .add-transaction-container .add-transaction {
+  padding-top: 25px;
+  display: flex;
+  justify-content: end;
+}
+.hero .top-container .add-transaction-container .add-transaction .transaction {
+  background-color: rgb(67, 132, 244);
+  border-radius: 4px;
+  padding: 10px 15px;
+  font-weight: 600;
+  color: white;
+}
+.hero .balance-container {
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.hero .transaction-list-container {
+  display: none;
+  margin-top: 20px;
+  background-color: white;
+  border-radius: 10px;
+}
+.hero .transaction-list-container .date {
+  padding: 10px;
+}
+.hero .transaction-list-container .transaction-list {
+  padding: 10px 20px;
+}
+.hero .transaction-list-container .transaction-list .transaction-item {
+  padding-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .navbar {
