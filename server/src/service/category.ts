@@ -1,9 +1,13 @@
-import CategoryModel from "../model/category";
+import CategoryModel from "../model/categoryModel";
 
 export const getAllCategory = async () => {
   console.log(CategoryModel.getCategory());
 
   return CategoryModel.getCategory();
+};
+
+export const getCategoryIdByName = async () => {
+  return CategoryModel.getCategoryIdByName();
 };
 
 export const createCategory = async () => {};

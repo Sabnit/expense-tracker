@@ -1,3 +1,4 @@
+import { query } from "express";
 import BaseModel from "./baseModel";
 
 export default class CategoryModel extends BaseModel {
@@ -7,6 +8,17 @@ export default class CategoryModel extends BaseModel {
         category: "name",
       })
       .from("category");
+    return query;
+  }
+
+  static async getCategoryIdByName() {
+    const query = this.queryBuilder()
+      .select({
+        id: "id",
+        category: "name",
+      })
+      .from("category");
+
     return query;
   }
 }

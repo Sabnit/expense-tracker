@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import config from "../config";
 import { IUser } from "../interface/auth";
 import BadRequestError from "../error/badRequestError";
-import UserModel from "../model/user";
+import UserModel from "../model/userModel";
 
 export async function signup(body: IUser) {
   const hashedPassword = await bcrypt.hash(body.password, config.saltRounds);
@@ -28,15 +28,11 @@ export async function signup(body: IUser) {
 export const login = async (body: IUser) => {
   const user = await UserModel.getByEmail(body.email);
 
-  console.log(body.password, user.password);
-
   if (!user) {
-    throw new BadRequestError("Invalid Email or Password");
+    throw new BadRequestError("Invalid Email or Password ");
   }
 
   const passwordMatch = await bcrypt.compare(body.password, user.password);
-
-  console.log(passwordMatch);
 
   if (!passwordMatch) {
     throw new BadRequestError("Invalid Email or Password");

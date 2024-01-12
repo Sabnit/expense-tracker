@@ -1,6 +1,6 @@
 import { Knex } from "knex";
 
-const TABLE_NAME = "expense";
+const TABLE_NAME = "transaction";
 
 /**
  * Create table TABLE_NAME.
@@ -19,6 +19,8 @@ export async function up(knex: Knex): Promise<void> {
     table.integer("amount").notNullable();
 
     table.timestamp("date").notNullable();
+
+    table.string("note").nullable();
 
     table
       .uuid("created_by")

@@ -23,13 +23,21 @@
   <body>
     <!-- Navbar -->
     <nav class="navbar">
-      <p class="title">Expense Tracker</p>
+      <p class="site-title">Expense Tracker</p>
 
-      <ul class="navbar-link">
-        <li>Dashboard</li>
-        <li>Transaction</li>
-        <li>Income</li>
-        <li>Budget</li>
+      <ul class="nav-links">
+        <li class="nav-item active-list" id="dashboard-list">
+          <a href="#" class="active-item link" id="dashboard-item">Dashboard</a>
+        </li>
+        <li class="nav-item" id="transaction-list">
+          <a href="#" class="link" id="transaction-item">Transaction</a>
+        </li>
+        <li class="nav-item" id="income-list">
+          <a href="#" class="link" id="income-item"> Income</a>
+        </li>
+        <li class="nav-item" id="budget-list">
+          <a href="#" class="link" id="budget-item"> Budget</a>
+        </li>
       </ul>
       <!-- Profile -->
       <div class="dropdown">
@@ -61,94 +69,171 @@
     </nav>
 
     <section class="hero">
-      <div class="top-container">
-        <div class="add-transaction-container-button">
-          <div class="add-transaction">
+      <div class="top-section">
+        <div class="transaction-button-container">
+          <div class="transaction-button" id="add-transaction">
             <i class="uil uil-plus-circle"></i>
-            <button class="transaction">Add Transaction</button>
+            <button class="add-button" id="add-transaction-button">
+              Add Transaction
+            </button>
           </div>
         </div>
 
         <div class="calendar-container">
-          <div class="calendar">
+          <div class="date-picker">
             <input
               type="date"
-              name="date"
+              name="start-date"
               id="start-calendar"
-              class="start-calendar"
+              class="start-date"
             />
             <span>to</span>
             <input
               type="date"
-              name="date"
+              name="end-date"
               id="end-calendar"
-              class="end-calendar"
+              class="end-date"
             />
           </div>
         </div>
 
-        <div class="add-transaction-container">
-          <i class="uis uis-times-circle"></i>
-          <div class="add-transaction-items">
-            <div class="category" id="select-category">
-              <span class="title">Category</span>
-              <div class="add-category">
-                <select value="Category List" class="select-category border">
-                  <option value="select">Select Category</option>
-                </select>
-              </div>
+        <div class="transaction-form-container" id="add-transaction-form">
+          <i class="uis uis-times-circle" id="close-icon"></i>
+          <div class="transaction-detail-fields">
+            <div class="category-field" id="category-selection">
+              <label class="form-title"
+                >Category
+
+                <div class="category-options">
+                  <select value="Category List" class="category-select border">
+                    <option value="select">Select Category</option>
+                  </select>
+                </div>
+              </label>
             </div>
-            <div class="date">
-              <span class="title">Date</span>
-              <input type="date" class="border" />
+            <div class="date-field">
+              <label class="form-title"
+                >Date
+
+                <input type="date" class="border" />
+              </label>
             </div>
-            <div class="note">
-              <span class="title"> Note &lpar;optional&rpar; </span>
-              <input type="text" class="border" />
+            <div class="note-field">
+              <label class="form-title">
+                Note &lpar;optional&rpar;
+                <input type="text" class="border" />
+              </label>
             </div>
-            <div class="amount">
-              <span class="title">Amount</span>
-              <input type="number" class="no-spinner border" />
+            <div class="amount-field">
+              <label class="form-title"
+                >Amount
+
+                <input type="number" class="no-spinner border" />
+              </label>
             </div>
           </div>
-          <div class="add-transaction">
-            <button class="transaction">Add Transaction</button>
+          <div class="transaction-submit" id="submit-transaction-button">
+            <button class="submit-button" type="submit">Add Transaction</button>
           </div>
         </div>
       </div>
 
-      <div class="balance-container">
-        <div class="balance">
-          <span class="title"> Balance </span>
-          <span class="number" id="balance-number">100</span>
+      <div class="balance-section">
+        <div class="balance-info">
+          <div class="balance-details">
+            <span class="info-title">Total Balance </span>
+            <span class="info-number" id="balance-value">100</span>
+          </div>
         </div>
-        <div class="expense">
-          <span class="title"> Expense</span>
-          <span class="number" id="expense-number">100</span>
+        <div class="expense-info">
+          <div class="expense-details">
+            <span class="info-title">Total Expense</span>
+            <span class="info-number" id="expense-value">100</span>
+          </div>
         </div>
-        <div class="income">
-          <span class="title"> Income</span>
-          <span class="number" id="income-number">100</span>
+        <div class="income-info">
+          <div class="income-details">
+            <span class="info-title">Total Income</span>
+            <span class="info-number" id="income-value">100</span>
+          </div>
         </div>
       </div>
 
-      <div class="transaction-list-container">
-        <div class="date">
+      <div class="transaction-list-section">
+        <div class="date-field">
           <span class="date-field" id="date-field">Jan 20,2024</span>
         </div>
-        <ul class="transaction-list" id="transaction-list">
+        <ul class="transaction-details" id="transaction-details">
           <li class="transaction-item">
-            <span class="title"> Gifts </span>
-            <span class="amount" id="amount"> 400</span>
+            <span class="item-title"> Gifts </span>
+            <span class="item-amount" id="item-amount"> 400</span>
           </li>
           <li class="transaction-item">
-            <span> Transport </span>
-            <span class="amount" id="amount"> 400</span>
+            <span class="item-title"> Transport </span>
+            <span class="item-amount" id="item-amount"> 400</span>
           </li>
         </ul>
+        <div
+          class="transaction-detail-container"
+          id="transaction-detail-container"
+        >
+          <div class="transaction-detail-items">
+            <i class="uis uis-times-circle" id="close-transaction-icon"></i>
+            <div class="transaction-detail-fields">
+              <div class="category-field" id="category-selection">
+                <label class="form-title"
+                  >Category
+
+                  <div class="category-options">
+                    <select
+                      name="category"
+                      value="Category List"
+                      class="category-select border"
+                    >
+                      <option value="select">Select Category</option>
+                    </select>
+                  </div>
+                </label>
+              </div>
+              <div class="date-field">
+                <label class="form-title"
+                  >Date
+
+                  <input type="date" class="border" />
+                </label>
+              </div>
+              <div class="note-field">
+                <label class="form-title">
+                  Note &lpar;optional&rpar;
+
+                  <input type="text" class="border" />
+                </label>
+              </div>
+              <div class="amount-field">
+                <label class="form-title"
+                  >Amount
+
+                  <input type="number" class="no-spinner border" />
+                </label>
+              </div>
+            </div>
+
+            <div class="action-buttons">
+              <div class="save-action" id="save-button">
+                <button class="action-title">Save changes</button>
+              </div>
+              <div class="delete-action" id="delete-button">
+                <button class="action-title">Delete transaction</button>
+              </div>
+              <div class="cancel-action" id="cancel-button">
+                <button class="action-title">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <script type="module" src="./expense.ts"></script>
+    <script type="module" src="./src/expense.ts"></script>
   </body>
 </html>

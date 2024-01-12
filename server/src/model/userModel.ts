@@ -1,4 +1,3 @@
-import { IsUnion } from "joi";
 import { IUser } from "../interface/auth";
 import BaseModel from "./baseModel";
 
@@ -7,8 +6,8 @@ export default class UserModel extends BaseModel {
     return this.queryBuilder()
       .select({
         id: "id",
-        firstName: "fname",
-        LastName: "lname",
+        firstName: "first_name",
+        LastName: "last_name",
       })
       .from("users");
   }
@@ -16,8 +15,8 @@ export default class UserModel extends BaseModel {
     const user = await this.queryBuilder()
       .select({
         id: "id",
-        fname: "fname",
-        lname: "lname",
+        firstName: "first_name",
+        lastName: "last_name",
         email: "email",
         password: "password",
       })

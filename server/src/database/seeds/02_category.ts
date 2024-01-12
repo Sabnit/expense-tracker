@@ -15,37 +15,52 @@ export async function seed(knex: Knex): Promise<void> {
       .then(() => {
         return knex(TABLE_NAME).insert([
           {
-            name: "Beauty",
+            name: "Business",
+            type: "Income",
           },
           {
-            name: "Car",
-          },
-          {
-            name: "Bike",
-          },
-          {
-            name: "Education",
-          },
-          {
-            name: "Entertainment",
-          },
-          {
-            name: "Family",
-          },
-          {
-            name: "Food and Drink",
+            name: "Extra Income",
+            type: "Income",
           },
           {
             name: "Gift",
+            type: "Income",
           },
           {
-            name: "Groceries",
+            name: "Insurance Payment",
+            type: "Income",
+          },
+          {
+            name: "Salary",
+            type: "Income",
+          },
+          {
+            name: "Other",
+            type: "Income",
+          },
+          {
+            name: "Car",
+            type: "Expense",
+          },
+          {
+            name: "Education",
+            type: "Expense",
+          },
+          {
+            name: "Entertainment",
+            type: "Expense",
+          },
+          {
+            name: "Food & Drink",
+            type: "Expense",
           },
           {
             name: "Healthcare",
+            type: "Expense",
           },
           {
-            name: "Shopping",
+            name: "Home",
+            type: "Expense",
           },
         ]);
       })

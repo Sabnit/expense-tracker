@@ -13,22 +13,7 @@ export async function seed(knex: Knex): Promise<void> {
     knex(TABLE_NAME)
       // .del()
       .then(() => {
-        return knex(TABLE_NAME).insert([
-          {
-            fname: "User ",
-            lname: "1",
-            email: "user1@test.com",
-            password:
-              "$2b$10$xm48I4u9/4UCaTCfQY1qkubMU14wEXF.cUsCd7sIUhYeBKb27gvS2",
-          },
-          {
-            fname: "User ",
-            lname: "2",
-            email: "user2@test.com",
-            password:
-              "$2b$10$xm48I4u9/4UCaTCfQY1qkubMU14wEXF.cUsCd7sIUhYeBKb27gvS2",
-          },
-        ]);
+        return knex(TABLE_NAME).insert([]);
       })
   );
 }

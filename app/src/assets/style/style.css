@@ -134,129 +134,320 @@ button {
   background: none;
 }
 
+button:active,
+button:focus {
+  outline: none;
+  border: none;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.active-item {
+  color: #12c48b !important;
+}
+
+.active-list {
+  border-bottom: 2px solid #12c48b;
+}
+
+.email-error,
+.password-error {
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: #dc3545;
+}
+
 body {
   background-color: #eee !important;
 }
 
-.hero {
-  margin: 0 auto;
-  padding: 20px 300px;
+.expense-container {
+  display: none;
 }
-.hero .top-container {
+.expense-container .hero {
+  margin: 0 auto;
+  padding: 20px 250px;
+}
+.expense-container .hero .top-section {
   display: flex;
   position: relative;
   justify-content: space-between;
 }
-.hero .top-container .add-transaction-container-button .add-transaction {
+.expense-container .hero .top-section .transaction-button-container .transaction-button {
   background-color: rgb(67, 132, 244);
   border-radius: 4px;
   padding: 5px;
 }
-.hero .top-container .add-transaction-container-button .add-transaction .uil-plus-circle {
+.expense-container .hero .top-section .transaction-button-container .transaction-button .uil-plus-circle {
   color: white;
 }
-.hero .top-container .add-transaction-container-button .add-transaction .transaction {
+.expense-container .hero .top-section .transaction-button-container .transaction-button .add-button {
   color: white;
+  padding: 5px 8px;
+  font-weight: 600;
 }
-.hero .top-container .calendar-container .calendar .start-calendar,
-.hero .top-container .calendar-container .calendar .end-calendar {
+.expense-container .hero .top-section .calendar-container .date-picker .start-date,
+.expense-container .hero .top-section .calendar-container .date-picker .end-date {
   border: none;
   padding: 5px 10px;
 }
-.hero .top-container .add-transaction-container {
+.expense-container .hero .top-section .transaction-form-container {
+  display: none;
   padding: 20px;
   position: absolute;
   background-color: white;
   flex-direction: row;
   width: 100%;
+  border-radius: 5px;
 }
-.hero .top-container .add-transaction-container .uis-times-circle {
+.expense-container .hero .top-section .transaction-form-container .uis-times-circle {
   position: absolute;
   top: -23px;
   right: -15px;
   font-size: 2em;
 }
-.hero .top-container .add-transaction-container .add-transaction-items {
+.expense-container .hero .top-section .transaction-form-container .transaction-detail-fields {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.hero .top-container .add-transaction-container .add-transaction-items .category {
-  display: flex;
-}
-.hero .top-container .add-transaction-container .add-transaction-items .category,
-.hero .top-container .add-transaction-container .add-transaction-items .date,
-.hero .top-container .add-transaction-container .add-transaction-items .note,
-.hero .top-container .add-transaction-container .add-transaction-items .amount {
+.expense-container .hero .top-section .transaction-form-container .transaction-detail-fields .transaction-title-field .form-title,
+.expense-container .hero .top-section .transaction-form-container .transaction-detail-fields .category-field .form-title,
+.expense-container .hero .top-section .transaction-form-container .transaction-detail-fields .date-field .form-title,
+.expense-container .hero .top-section .transaction-form-container .transaction-detail-fields .note-field .form-title,
+.expense-container .hero .top-section .transaction-form-container .transaction-detail-fields .amount-field .form-title {
   display: flex;
   flex-direction: column;
-}
-.hero .top-container .add-transaction-container .add-transaction-items .category .title,
-.hero .top-container .add-transaction-container .add-transaction-items .date .title,
-.hero .top-container .add-transaction-container .add-transaction-items .note .title,
-.hero .top-container .add-transaction-container .add-transaction-items .amount .title {
   font-size: 12px;
   color: #7b93a4;
   padding-bottom: 3px;
 }
-.hero .top-container .add-transaction-container .add-transaction-items .category .border,
-.hero .top-container .add-transaction-container .add-transaction-items .date .border,
-.hero .top-container .add-transaction-container .add-transaction-items .note .border,
-.hero .top-container .add-transaction-container .add-transaction-items .amount .border {
+.expense-container .hero .top-section .transaction-form-container .transaction-detail-fields .transaction-title-field .border,
+.expense-container .hero .top-section .transaction-form-container .transaction-detail-fields .category-field .border,
+.expense-container .hero .top-section .transaction-form-container .transaction-detail-fields .date-field .border,
+.expense-container .hero .top-section .transaction-form-container .transaction-detail-fields .note-field .border,
+.expense-container .hero .top-section .transaction-form-container .transaction-detail-fields .amount-field .border {
   padding: 5px;
   border: 1px solid #dee2e6 !important;
   border-radius: 4px;
 }
-.hero .top-container .add-transaction-container .add-transaction {
+.expense-container .hero .top-section .transaction-form-container .transaction-submit {
   padding-top: 25px;
   display: flex;
   justify-content: end;
 }
-.hero .top-container .add-transaction-container .add-transaction .transaction {
+.expense-container .hero .top-section .transaction-form-container .transaction-submit .submit-button {
   background-color: rgb(67, 132, 244);
   border-radius: 4px;
   padding: 10px 15px;
   font-weight: 600;
   color: white;
 }
-.hero .balance-container {
+.expense-container .hero .balance-section {
   padding-top: 20px;
   display: flex;
   justify-content: space-between;
 }
-.hero .transaction-list-container {
-  display: none;
+.expense-container .hero .balance-section .balance-info,
+.expense-container .hero .balance-section .expense-info,
+.expense-container .hero .balance-section .income-info {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  padding: 5px 150px 5px 10px;
+  border-radius: 10px;
+}
+.expense-container .hero .balance-section .balance-info .balance-details,
+.expense-container .hero .balance-section .balance-info .expense-details,
+.expense-container .hero .balance-section .balance-info .income-details,
+.expense-container .hero .balance-section .expense-info .balance-details,
+.expense-container .hero .balance-section .expense-info .expense-details,
+.expense-container .hero .balance-section .expense-info .income-details,
+.expense-container .hero .balance-section .income-info .balance-details,
+.expense-container .hero .balance-section .income-info .expense-details,
+.expense-container .hero .balance-section .income-info .income-details {
+  padding-left: 5px;
+}
+.expense-container .hero .balance-section .balance-info .balance-details .info-title,
+.expense-container .hero .balance-section .balance-info .expense-details .info-title,
+.expense-container .hero .balance-section .balance-info .income-details .info-title,
+.expense-container .hero .balance-section .expense-info .balance-details .info-title,
+.expense-container .hero .balance-section .expense-info .expense-details .info-title,
+.expense-container .hero .balance-section .expense-info .income-details .info-title,
+.expense-container .hero .balance-section .income-info .balance-details .info-title,
+.expense-container .hero .balance-section .income-info .expense-details .info-title,
+.expense-container .hero .balance-section .income-info .income-details .info-title {
+  display: block;
+  font-size: 14px;
+  color: #324c5b;
+  font-weight: 600;
+}
+.expense-container .hero .balance-section .balance-info .balance-details .info-number,
+.expense-container .hero .balance-section .balance-info .expense-details .info-number,
+.expense-container .hero .balance-section .balance-info .income-details .info-number,
+.expense-container .hero .balance-section .expense-info .balance-details .info-number,
+.expense-container .hero .balance-section .expense-info .expense-details .info-number,
+.expense-container .hero .balance-section .expense-info .income-details .info-number,
+.expense-container .hero .balance-section .income-info .balance-details .info-number,
+.expense-container .hero .balance-section .income-info .expense-details .info-number,
+.expense-container .hero .balance-section .income-info .income-details .info-number {
+  display: block;
+  font-size: 24px;
+}
+.expense-container .hero .balance-section .balance-info .info-number,
+.expense-container .hero .balance-section .income-info .info-number {
+  color: #2dba75;
+}
+.expense-container .hero .balance-section .expense-info .info-number {
+  color: #f14c52;
+}
+.expense-container .hero .transaction-list-section {
   margin-top: 20px;
   background-color: white;
   border-radius: 10px;
 }
-.hero .transaction-list-container .date {
-  padding: 10px;
+.expense-container .hero .transaction-list-section .date-field {
+  padding: 15px 0 10px 10px;
+  font-size: 14px;
+  font-weight: 600;
 }
-.hero .transaction-list-container .transaction-list {
+.expense-container .hero .transaction-list-section .transaction-details {
   padding: 10px 20px;
 }
-.hero .transaction-list-container .transaction-list .transaction-item {
+.expense-container .hero .transaction-list-section .transaction-details .transaction-item {
   padding-bottom: 12px;
   display: flex;
   justify-content: space-between;
 }
+.expense-container .hero .transaction-list-section .transaction-details .transaction-item .item-title {
+  color: #324c5b;
+}
+.expense-container .hero .transaction-list-section .transaction-details .transaction-item .item-amount {
+  font-weight: 700;
+}
+.expense-container .hero .transaction-list-section .transaction-detail-container {
+  display: flex;
+  position: absolute;
+  width: 67%;
+}
+.expense-container .hero .transaction-list-section .transaction-detail-container .transaction-detail-items {
+  background-color: #fff;
+  width: 100%;
+  position: relative;
+  padding: 0 20px;
+}
+.expense-container .hero .transaction-list-section .transaction-detail-container .transaction-detail-items .uis-times-circle {
+  position: absolute;
+  top: -27px;
+  right: -15px;
+  font-size: 2em;
+  color: #7b93a4;
+}
+.expense-container .hero .transaction-list-section .transaction-detail-container .transaction-detail-items .transaction-detail-fields {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.expense-container .hero .transaction-list-section .transaction-detail-container .transaction-detail-items .transaction-detail-fields .transaction-title-field .form-title,
+.expense-container .hero .transaction-list-section .transaction-detail-container .transaction-detail-items .transaction-detail-fields .category-field .form-title,
+.expense-container .hero .transaction-list-section .transaction-detail-container .transaction-detail-items .transaction-detail-fields .date-field .form-title,
+.expense-container .hero .transaction-list-section .transaction-detail-container .transaction-detail-items .transaction-detail-fields .note-field .form-title,
+.expense-container .hero .transaction-list-section .transaction-detail-container .transaction-detail-items .transaction-detail-fields .amount-field .form-title {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  color: #7b93a4;
+  padding-bottom: 3px;
+}
+.expense-container .hero .transaction-list-section .transaction-detail-container .transaction-detail-items .transaction-detail-fields .transaction-title-field .border,
+.expense-container .hero .transaction-list-section .transaction-detail-container .transaction-detail-items .transaction-detail-fields .category-field .border,
+.expense-container .hero .transaction-list-section .transaction-detail-container .transaction-detail-items .transaction-detail-fields .date-field .border,
+.expense-container .hero .transaction-list-section .transaction-detail-container .transaction-detail-items .transaction-detail-fields .note-field .border,
+.expense-container .hero .transaction-list-section .transaction-detail-container .transaction-detail-items .transaction-detail-fields .amount-field .border {
+  padding: 5px;
+  border: 1px solid #dee2e6 !important;
+  border-radius: 4px;
+}
+.expense-container .hero .transaction-list-section .transaction-detail-container .transaction-detail-items .action-buttons {
+  padding: 10px 0 15px;
+  display: flex;
+  justify-content: end;
+  gap: 20px;
+}
+.expense-container .hero .transaction-list-section .transaction-detail-container .transaction-detail-items .action-buttons .save-action,
+.expense-container .hero .transaction-list-section .transaction-detail-container .transaction-detail-items .action-buttons .delete-action,
+.expense-container .hero .transaction-list-section .transaction-detail-container .transaction-detail-items .action-buttons .cancel-action {
+  padding: 10px;
+  border-radius: 5px;
+  max-width: 200px;
+  width: 100%;
+}
+.expense-container .hero .transaction-list-section .transaction-detail-container .transaction-detail-items .action-buttons .save-action {
+  background-color: #e5ebee;
+  width: 100%;
+}
+.expense-container .hero .transaction-list-section .transaction-detail-container .transaction-detail-items .action-buttons .save-action .action-title {
+  color: #7b93a4;
+  font-weight: 600;
+}
+.expense-container .hero .transaction-list-section .transaction-detail-container .transaction-detail-items .action-buttons .delete-action {
+  background-color: #f14c52;
+}
+.expense-container .hero .transaction-list-section .transaction-detail-container .transaction-detail-items .action-buttons .delete-action .action-title {
+  color: #fff;
+  font-weight: 600;
+}
+.expense-container .hero .transaction-list-section .transaction-detail-container .transaction-detail-items .action-buttons .cancel-action {
+  background-color: #7b93a4;
+}
+.expense-container .hero .transaction-list-section .transaction-detail-container .transaction-detail-items .action-buttons .cancel-action .action-title {
+  color: #fff;
+  font-weight: 600;
+}
 
 .navbar {
+  padding: 0 1em !important;
+  display: flex;
   height: inherit;
   width: 100%;
   background: white;
   border-bottom: solid 1px #e5ebee;
   box-shadow: 0 4px 8px 0 rgba(48, 82, 120, 0.03);
 }
-.navbar .title {
+.navbar .site-title {
   display: contents;
 }
-.navbar .navbar-link {
+.navbar .nav-links {
+  margin: 0;
   display: flex;
   gap: 50px;
   flex-wrap: wrap;
-  padding-top: 10px;
+}
+.navbar .nav-links .nav-item {
+  padding: 10px 0;
+}
+.navbar .nav-links .nav-item .link {
+  color: #7b93a4;
+  font-weight: 600;
+  padding: 0 20px;
+}
+.navbar .profile-section {
+  position: relative;
+}
+.navbar .profile-section .profile-name {
+  color: black;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+.navbar .profile-section .dropdown-menu {
+  position: absolute;
+  display: none;
+  top: 35px;
+  left: -114px;
 }
 
 /*# sourceMappingURL=style.css.map */

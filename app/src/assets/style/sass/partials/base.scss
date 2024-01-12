@@ -2,112 +2,238 @@ body {
   background-color: #eee !important;
 }
 
-.hero {
-  margin: 0 auto;
-  padding: 20px 300px;
+.expense-container {
+  display: none;
+  .hero {
+    margin: 0 auto;
+    padding: 20px 250px;
 
-  .top-container {
-    display: flex;
-    position: relative;
-    justify-content: space-between;
+    .top-section {
+      display: flex;
+      position: relative;
+      justify-content: space-between;
 
-    .add-transaction-container-button {
-      .add-transaction {
-        background-color: rgb(67, 132, 244);
-        border-radius: 4px;
-        padding: 5px;
-        .uil-plus-circle {
-          color: white;
-        }
-        .transaction {
-          color: white;
-        }
-      }
-    }
-
-    .calendar-container {
-      .calendar {
-        .start-calendar,
-        .end-calendar {
-          border: none;
-          padding: 5px 10px;
-        }
-      }
-    }
-
-    .add-transaction-container {
-      padding: 20px;
-      position: absolute;
-      background-color: white;
-      flex-direction: row;
-      width: 100%;
-      .uis-times-circle {
-        position: absolute;
-        top: -23px;
-        right: -15px;
-        font-size: 2em;
-        // color: #48abf9;
-      }
-      .add-transaction-items {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        .category {
-          display: flex;
-        }
-        .category,
-        .date,
-        .note,
-        .amount {
-          display: flex;
-          flex-direction: column;
-          .title {
-            font-size: 12px;
-            color: #7b93a4;
-            padding-bottom: 3px;
-          }
-          .border {
-            padding: 5px;
-            border: 1px solid #dee2e6 !important;
-            border-radius: 4px;
-          }
-        }
-      }
-      .add-transaction {
-        padding-top: 25px;
-        display: flex;
-        justify-content: end;
-        .transaction {
+      .transaction-button-container {
+        .transaction-button {
           background-color: rgb(67, 132, 244);
           border-radius: 4px;
-          padding: 10px 15px;
-          font-weight: 600;
-          color: white;
+          padding: 5px;
+          .uil-plus-circle {
+            color: white;
+          }
+          .add-button {
+            color: white;
+            padding: 5px 8px;
+            font-weight: 600;
+          }
+        }
+      }
+
+      .calendar-container {
+        .date-picker {
+          .start-date,
+          .end-date {
+            border: none;
+            padding: 5px 10px;
+          }
+        }
+      }
+
+      .transaction-form-container {
+        display: none;
+        padding: 20px;
+        position: absolute;
+        background-color: white;
+        flex-direction: row;
+        width: 100%;
+        border-radius: 5px;
+        .uis-times-circle {
+          position: absolute;
+          top: -23px;
+          right: -15px;
+          font-size: 2em;
+        }
+        .transaction-detail-fields {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          .transaction-title-field,
+          .category-field,
+          .date-field,
+          .note-field,
+          .amount-field {
+            .form-title {
+              display: flex;
+              flex-direction: column;
+              font-size: 12px;
+              color: #7b93a4;
+              padding-bottom: 3px;
+            }
+            .border {
+              padding: 5px;
+              border: 1px solid #dee2e6 !important;
+              border-radius: 4px;
+            }
+          }
+        }
+        .transaction-submit {
+          padding-top: 25px;
+          display: flex;
+          justify-content: end;
+          .submit-button {
+            background-color: rgb(67, 132, 244);
+            border-radius: 4px;
+            padding: 10px 15px;
+            font-weight: 600;
+            color: white;
+          }
         }
       }
     }
-  }
 
-  .balance-container {
-    padding-top: 20px;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .transaction-list-container {
-    display: none;
-    margin-top: 20px;
-    background-color: white;
-    border-radius: 10px;
-    .date {
-      padding: 10px;
-    }
-    .transaction-list {
-      padding: 10px 20px;
-      .transaction-item {
-        padding-bottom: 12px;
+    .balance-section {
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      .balance-info,
+      .expense-info,
+      .income-info {
+        background: white;
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+        padding: 5px 150px 5px 10px;
+        border-radius: 10px;
+        .balance-details,
+        .expense-details,
+        .income-details {
+          padding-left: 5px;
+          .info-title {
+            display: block;
+            font-size: 14px;
+            color: #324c5b;
+            font-weight: 600;
+          }
+          .info-number {
+            display: block;
+            font-size: 24px;
+          }
+        }
+      }
+      .balance-info,
+      .income-info {
+        .info-number {
+          color: #2dba75;
+        }
+      }
+      .expense-info {
+        .info-number {
+          color: #f14c52;
+        }
+      }
+    }
+
+    .transaction-list-section {
+      margin-top: 20px;
+      background-color: white;
+      border-radius: 10px;
+      .date-field {
+        padding: 15px 0 10px 10px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .transaction-details {
+        padding: 10px 20px;
+        .transaction-item {
+          padding-bottom: 12px;
+          display: flex;
+          justify-content: space-between;
+          .item-title {
+            color: #324c5b;
+          }
+          .item-amount {
+            font-weight: 700;
+          }
+        }
+      }
+      .transaction-detail-container {
+        display: flex;
+        position: absolute;
+        width: 67%;
+        .transaction-detail-items {
+          background-color: #fff;
+          width: 100%;
+          position: relative;
+          padding: 0 20px;
+          .uis-times-circle {
+            position: absolute;
+            top: -27px;
+            right: -15px;
+            font-size: 2em;
+            color: #7b93a4;
+          }
+
+          .transaction-detail-fields {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            .transaction-title-field,
+            .category-field,
+            .date-field,
+            .note-field,
+            .amount-field {
+              .form-title {
+                display: flex;
+                flex-direction: column;
+                font-size: 12px;
+                color: #7b93a4;
+                padding-bottom: 3px;
+              }
+              .border {
+                padding: 5px;
+                border: 1px solid #dee2e6 !important;
+                border-radius: 4px;
+              }
+            }
+          }
+          .action-buttons {
+            padding: 10px 0 15px;
+            display: flex;
+            justify-content: end;
+            gap: 20px;
+
+            .save-action,
+            .delete-action,
+            .cancel-action {
+              padding: 10px;
+              border-radius: 5px;
+              max-width: 200px;
+              width: 100%;
+            }
+            .save-action {
+              background-color: #e5ebee;
+              width: 100%;
+              .action-title {
+                color: #7b93a4;
+                font-weight: 600;
+              }
+            }
+            .delete-action {
+              background-color: #f14c52;
+              .action-title {
+                color: #fff;
+                font-weight: 600;
+              }
+            }
+            .cancel-action {
+              background-color: #7b93a4;
+              .action-title {
+                color: #fff;
+                font-weight: 600;
+              }
+            }
+          }
+        }
       }
     }
   }

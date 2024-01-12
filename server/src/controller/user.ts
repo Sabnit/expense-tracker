@@ -9,6 +9,11 @@ export async function getUsers(req: Request, res: Response) {
   });
 }
 
+export async function getUserMe(req: Request, res: Response) {
+  const data = req.body;
+  console.log(data);
+}
+
 export const createUser = (req: Request, res: Response) => {};
 
 export const updateUserById = (req: Request, res: Response) => {};

@@ -1,9 +1,16 @@
 import { Router } from "express";
-import { deleteUserById, getUsers, updateUserById } from "../controller/user";
+import {
+  deleteUserById,
+  getUserMe,
+  getUsers,
+  updateUserById,
+} from "../controller/user";
 
 const router = Router();
 
 router.get("/", getUsers);
+
+router.get("/me", getUserMe);
 
 router.put("/:id", updateUserById);
 

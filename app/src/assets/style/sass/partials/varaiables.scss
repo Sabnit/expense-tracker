@@ -1,0 +1,15 @@
+.active-item {
+  color: #12c48b !important;
+}
+
+.active-list {
+  border-bottom: 2px solid #12c48b;
+}
+
+.email-error,
+.password-error {
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: #dc3545;
+}

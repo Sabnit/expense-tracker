@@ -1,7 +1,7 @@
 import { Router } from "express";
 import authRoutes from "./auth";
 import userRoutes from "./user";
-import expenseRoutes from "./expense";
+import transactionRoutes from "./transaction";
 import { auth } from "../middleware/auth";
 import categoryRoutes from "./category";
 
@@ -11,7 +11,7 @@ router.use("/auth", authRoutes);
 
 router.use("/users", userRoutes);
 
-router.use("/expense", auth, expenseRoutes);
+router.use("/transaction", auth, transactionRoutes);
 
 router.use("/category", categoryRoutes);
 

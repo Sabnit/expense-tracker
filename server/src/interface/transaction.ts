@@ -1,6 +1,6 @@
 import { PaginationQuery } from "./pagination";
 
-export interface IExpense extends PaginationQuery {
+export interface ITransaction extends PaginationQuery {
   title: string;
   amount: number;
   date: Date;
@@ -8,7 +8,7 @@ export interface IExpense extends PaginationQuery {
   categoryId: number;
 }
 
-export interface IExpenseDate extends PaginationQuery {
+export interface ITransactionDate extends PaginationQuery {
   startDate: string;
   endDate: string;
 }
