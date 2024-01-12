@@ -1,14 +1,12 @@
-import axios from "axios";
-
 import {
   loginFormContainer,
   loginInputFields,
 } from "../../dom/login/domElements";
 import {
   checkLoggedIn,
-  showError,
   validateForm,
 } from "../../utils/loginSignup/commonUtils";
+import { loginAuth } from "../../services/auth/login";
 
 const login = () => {
   loginFormContainer.loginForm.addEventListener("submit", async (e: Event) => {
@@ -21,24 +19,7 @@ const login = () => {
     const isValid = validateForm(loginFormContainer.loginForm);
     if (!isValid) return;
 
-    try {
-      const response = await axios({
-        url: "http://localhost:8000/auth/login",
-        data: {
-          email,
-          password,
-        },
-        method: "POST",
-      });
-
-      localStorage.setItem("accessToken", response.data.accessToken);
-
-      checkLoggedIn();
-    } catch (e: any) {
-      if (e.response.status == 400) {
-        showError();
-      }
-    }
+    loginAuth(email, password);
   });
 };
 
