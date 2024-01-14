@@ -62,6 +62,30 @@ export async function seed(knex: Knex): Promise<void> {
             name: "Home",
             type: "expense",
           },
+          {
+            name: "Work",
+            type: "expense",
+          },
+          {
+            name: "Travel",
+            type: "expense",
+          },
+          {
+            name: "Transport",
+            type: "expense",
+          },
+          {
+            name: "Shopping",
+            type: "expense",
+          },
+          {
+            name: "Family",
+            type: "expense",
+          },
+          {
+            name: "Personal",
+            type: "expense",
+          },
         ]);
       })
   );
