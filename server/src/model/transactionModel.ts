@@ -1,55 +1,54 @@
+import { Knex } from "knex";
 import { ITransaction } from "../interface/transaction";
 import BaseModel from "./baseModel";
+import { start } from "repl";
 
 export default class TransactionModel extends BaseModel {
+  private static injectFilter(query: Knex.QueryBuilder, params: any) {
+    if (params.type) {
+      query
+        .innerJoin("category", "transaction.category_name", "category.name")
+        .where({
+          "category.type": params.type,
+        });
+    }
+
+    if (params.startDate) {
+      query.where("transaction.date", ">=", params.startDate);
+    }
+
+    if (params.endDate) {
+      query.where("transaction.date", "<=", params.endDate);
+    }
+  }
+
   static async getTransaction(params: any) {
     const query = this.queryBuilder()
       .select({
         title: "title",
         amount: "amount",
         date: "date",
-        created_by: "created_by",
-        category_id: "category_id",
+        categoryName: "category_name",
+        createdBy: "created_by",
       })
       .from("transaction")
       .where({ created_by: params.createdBy });
+
+    this.injectFilter(query, params);
+
     query.offset(params.offset).limit(params.limit);
 
     return query;
-  }
-
-  static async getTransactionById(id: string) {
-    return this.queryBuilder()
-      .select({
-        Title: "title",
-        Amount: "amount",
-        Date: "date",
-        Created_by: "created_by",
-        Category_id: "category_id",
-      })
-      .from("transaction")
-      .where({ id })
-      .first();
-  }
-
-  static async getTransactionsByDateRange(startDate: Date, endDate: Date) {
-    return this.queryBuilder()
-      .select({
-        Title: "title",
-        Amount: "amount",
-        Date: "date",
-        Created_by: "created_by",
-        Category_id: "category_id",
-      })
-      .from("transaction");
   }
 
   static countAll(params: any) {
     const query = this.queryBuilder()
       .table("transaction")
       .where({ Created_by: params.createdBy })
-      .count({ count: "id" })
+      .count({ count: "transaction.id" })
       .first();
+
+    this.injectFilter(query, params);
 
     return query;
   }
@@ -66,6 +65,20 @@ export default class TransactionModel extends BaseModel {
       .update(transaction)
       .table("transaction")
       .where({ transactionId });
+  }
+
+  static async getTransactionById(id: string) {
+    return this.queryBuilder()
+      .select({
+        title: "title",
+        amount: "amount",
+        date: "date",
+        categoryName: "category_name",
+        createdBy: "created_by",
+      })
+      .from("transaction")
+      .where({ id })
+      .first();
   }
 
   static async deleteTransaction(transactionId: string) {

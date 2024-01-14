@@ -7,7 +7,9 @@ export async function getTransaction(
   req: Request & { user?: JwtPayload },
   res: Response
 ) {
-  const query = req.query;
+  const { query } = req;
+
+  console.log(query);
 
   query.createdBy = req.user?.id;
 

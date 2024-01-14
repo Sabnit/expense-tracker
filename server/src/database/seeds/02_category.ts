@@ -16,51 +16,51 @@ export async function seed(knex: Knex): Promise<void> {
         return knex(TABLE_NAME).insert([
           {
             name: "Business",
-            type: "Income",
+            type: "income",
           },
           {
-            name: "Extra Income",
-            type: "Income",
+            name: "Extra income",
+            type: "income",
           },
           {
             name: "Gift",
-            type: "Income",
+            type: "income",
           },
           {
             name: "Insurance Payment",
-            type: "Income",
+            type: "income",
           },
           {
             name: "Salary",
-            type: "Income",
+            type: "income",
           },
           {
             name: "Other",
-            type: "Income",
+            type: "income",
           },
           {
             name: "Car",
-            type: "Expense",
+            type: "expense",
           },
           {
             name: "Education",
-            type: "Expense",
+            type: "expense",
           },
           {
             name: "Entertainment",
-            type: "Expense",
+            type: "expense",
           },
           {
             name: "Food & Drink",
-            type: "Expense",
+            type: "expense",
           },
           {
             name: "Healthcare",
-            type: "Expense",
+            type: "expense",
           },
           {
             name: "Home",
-            type: "Expense",
+            type: "expense",
           },
         ]);
       })

@@ -1,3 +1,5 @@
 export interface ICategory {
-  category: string;
+  id?: string;
+  name?: string;
+  type?: string;
 }

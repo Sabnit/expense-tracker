@@ -23,18 +23,18 @@ export async function up(knex: Knex): Promise<void> {
     table.string("note").nullable();
 
     table
+      .string("category_name")
+      .unsigned()
+      .notNullable()
+      .references("name")
+      .inTable("category");
+
+    table
       .uuid("created_by")
       .unsigned()
       .notNullable()
       .references("id")
       .inTable("users");
-
-    table
-      .uuid("category_id")
-      .unsigned()
-      .notNullable()
-      .references("id")
-      .inTable("category");
   });
 }
 

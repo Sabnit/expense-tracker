@@ -11,6 +11,20 @@ export default class UserModel extends BaseModel {
       })
       .from("users");
   }
+
+  static async getUserById(id: string) {
+    return this.queryBuilder()
+      .select({
+        id: "id",
+        firstName: "first_name",
+        lastName: "last_name",
+        email: "email",
+      })
+      .from("users")
+      .where({ id })
+      .first();
+  }
+
   static async getByEmail(email: string) {
     const user = await this.queryBuilder()
       .select({
@@ -31,11 +45,14 @@ export default class UserModel extends BaseModel {
     return this.queryBuilder().insert(user).table("users");
   }
 
-  static async updateExpense(userId: number, user: IUser) {
-    return this.queryBuilder().update(user).table("users").where({ userId });
+  static async updateUser(userId: string, userInfo: IUser) {
+    return this.queryBuilder()
+      .update(userInfo)
+      .table("users")
+      .where({ userId });
   }
 
-  static async deleteExpense(userId: number) {
+  static async deleteUser(userId: string) {
     return this.queryBuilder().table("users").where({ userId }).del();
   }
 }
