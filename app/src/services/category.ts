@@ -1,28 +1,15 @@
-import { EXPENSE_CATEGORY, INCOME_CATEGORY } from "../constants/expenseApp";
-import { ICategory } from "../interface/category";
-import { createList } from "../components/expenses/category";
+import { CATEGORY_URL } from "../constants/expenseApp";
+
 import { get } from "../utils/http";
 
-export const expenseCategoryList = async () => {
+export const getCategory = async () => {
   try {
-    const response = await get(EXPENSE_CATEGORY);
+    const response = await get(CATEGORY_URL);
 
-    const expenseList = response.data.map((list: ICategory) => list.name);
+    const category = response.data;
 
-    createList(expenseList);
-  } catch (e: any) {
-    console.log("error", e);
-  }
-};
-
-export const incomeCategotyList = async () => {
-  try {
-    const response = await get(INCOME_CATEGORY);
-
-    const incomeList = response.data.map((list: ICategory) => list.name);
-
-    createList(incomeList);
-  } catch (e: any) {
-    console.log("error", e);
+    return category;
+  } catch (error) {
+    console.log("error", error);
   }
 };

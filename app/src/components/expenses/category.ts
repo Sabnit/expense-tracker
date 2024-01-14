@@ -1,10 +1,21 @@
-import domContainer from "../../dom/expenseApp/container";
+import { getCategory } from "../../services/category";
+import {
+  createList,
+  getCategoryList,
+} from "../../utils/expenseApp/commonUtils";
 
-export const createList = (list: any) => {
-  list.forEach((category: string) => {
-    const option = document.createElement("option");
-    option.value = category;
-    option.text = category;
-    domContainer.categorySelect.add(option);
-  });
+export const displayExpenseCategory = async () => {
+  const categoryObj = await getCategory();
+
+  const expenseList = getCategoryList(categoryObj, "expense");
+
+  createList(expenseList);
+};
+
+export const displayIncomeCategory = async () => {
+  const categoryObj = await getCategory();
+
+  const incomeList = getCategoryList(categoryObj, "income");
+
+  createList(incomeList);
 };

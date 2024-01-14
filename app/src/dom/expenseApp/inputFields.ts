@@ -1,7 +1,7 @@
 export const domInputFields = {
   calendar: document.getElementById("start-calendar") as HTMLInputElement,
   categorySelect: document.getElementById(
-    "category-select"
+    "add-transaction-category"
   ) as HTMLSelectElement,
 };
 

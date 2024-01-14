@@ -1,12 +1,9 @@
-import {
-  expenseCategoryList,
-  incomeCategotyList,
-} from "../../services/category";
+import { displayExpenseCategory, displayIncomeCategory } from "./category";
 
 export const renderExpense = () => {
-  expenseCategoryList();
+  displayExpenseCategory();
 };
 
 export const renderIncome = () => {
-  incomeCategotyList();
+  displayIncomeCategory();
 };

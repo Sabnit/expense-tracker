@@ -1,5 +1,7 @@
 import { navItems, navLists } from "../../dom/expenseApp/navItems";
 import domContainer from "../../dom/expenseApp/container";
+import { ICategory } from "../../interface/category";
+import { domInputFields } from "../../dom/expenseApp/inputFields";
 
 export const addClassList = (element: HTMLElement, className: string) => {
   element.classList.add(`${className}`);
@@ -24,6 +26,29 @@ export const clearInput = (element: HTMLInputElement) => {
 export const showExpense = () => {
   hideElement(domContainer.loginContainer);
   showElement(domContainer.expenseContainer);
+};
+
+export const getCategoryList = (data: any, category: string) => {
+  return data
+    .filter((item: ICategory) => item.type === category)
+    .map((item: ICategory) => item.category);
+};
+
+export const createList = (list: any) => {
+  domInputFields.categorySelect.innerHTML = "";
+
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.text = "Select a category";
+  domInputFields.categorySelect.add(defaultOption);
+
+  list.forEach((category: string) => {
+    const option = document.createElement("option");
+
+    option.value = category;
+    option.text = category;
+    domInputFields.categorySelect.add(option);
+  });
 };
 
 // NavBar Utils
