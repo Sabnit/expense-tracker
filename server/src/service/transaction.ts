@@ -3,16 +3,17 @@ import NotFoundError from "../error/notFoundError";
 import { buildMeta, getPaginationOptions } from "../util/pagination";
 import TransactionModel from "../model/TransactionModel";
 
-export const getTransaction = async (query: ITransaction) => {
-  const { page, size } = query;
+export const getTransaction = async (params: ITransaction) => {
+  const { page, size } = params;
 
   const pageDetails = getPaginationOptions({ page, size });
 
   const transactionsPromise = TransactionModel.getTransaction({
     ...pageDetails,
-    ...query,
+    ...params,
   });
-  const countPromise = TransactionModel.countAll(query);
+
+  const countPromise = TransactionModel.countAll(params);
 
   const [transaction, count] = await Promise.all([
     transactionsPromise,
@@ -28,15 +29,8 @@ export const getTransaction = async (query: ITransaction) => {
   };
 };
 
-export const getTransactionByDateRange = async (
-  startDate: Date,
-  endDate: Date
-) => {
-  return TransactionModel.getTransactionsByDateRange(startDate, endDate);
-};
-
 export const createTransaction = async (transaction: ITransaction) => {
-  return TransactionModel.createTransaction(transaction);
+  return await TransactionModel.createTransaction(transaction);
 };
 
 export const updateTransaction = async (
