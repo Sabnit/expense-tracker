@@ -19,5 +19,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "src/components/expenses/expense.ts"]
+  "include": ["src", "src/components/expenses/index.ts"]
 }

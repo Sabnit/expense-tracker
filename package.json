@@ -1,0 +1,14 @@
+{
+  "name": "expense-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"cd app && npm run dev\" \"cd server && npm start\" "
+  },
+  "author": "Sabnit Prasai",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
