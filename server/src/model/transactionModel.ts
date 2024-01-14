@@ -7,7 +7,7 @@ export default class TransactionModel extends BaseModel {
   private static injectFilter(query: Knex.QueryBuilder, params: any) {
     if (params.type) {
       query
-        .innerJoin("category", "transaction.category_name", "category.name")
+        .innerJoin("category", "transaction.category", "category.name")
         .where({
           "category.type": params.type,
         });
@@ -73,7 +73,7 @@ export default class TransactionModel extends BaseModel {
         title: "title",
         amount: "amount",
         date: "date",
-        categoryName: "category_name",
+        categoryName: "category",
         createdBy: "created_by",
       })
       .from("transaction")

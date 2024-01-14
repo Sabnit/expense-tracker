@@ -1,10 +1,15 @@
 import axios from "axios";
 
-export const post = async (url: string, data: any) => {
+export const post = async (
+  url: string,
+  data: any,
+  headers?: Record<string, string>
+) => {
   const response = await axios({
     url,
     data,
     method: "POST",
+    headers,
   })
     .then((res) => res.data)
     .catch((error) => {

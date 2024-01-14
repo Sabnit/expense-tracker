@@ -29,14 +29,8 @@ const navbarEventListeners = () => {
     budgetTabIsActive();
   });
 
-  navLists.user?.addEventListener("click", (event: MouseEvent) => {
-    userTabIsClicked();
-    if (!navLists.user?.contains(event.target as Node)) {
-      // hideElement(domContainer.userMenu);
-    }
-  });
-
   document.addEventListener("click", (event: MouseEvent) => {
+    userTabIsClicked();
     if (!navLists.user?.contains(event.target as Node)) {
       hideElement(domContainer.userMenu);
     }

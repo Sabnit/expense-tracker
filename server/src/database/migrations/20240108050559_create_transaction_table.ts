@@ -23,7 +23,7 @@ export async function up(knex: Knex): Promise<void> {
     table.string("note").nullable();
 
     table
-      .string("category_name")
+      .string("category")
       .unsigned()
       .notNullable()
       .references("name")
