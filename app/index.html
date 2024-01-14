@@ -353,7 +353,11 @@
               <div class="transaction-title-field">
                 <label class="form-title">
                   Title
-                  <input type="text" class="border" />
+                  <input
+                    type="text"
+                    class="border"
+                    id="add-transaction-title"
+                  />
                 </label>
               </div>
               <div class="category-field" id="category-selection">
@@ -364,6 +368,7 @@
                     <select
                       value="Category List"
                       class="category-select border"
+                      id="add-transaction-category"
                     >
                       <option value="select">Select Category</option>
                     </select>
@@ -374,20 +379,24 @@
                 <label class="form-title"
                   >Date
 
-                  <input type="date" class="border" />
+                  <input type="date" class="border" id="add-transaction-date" />
                 </label>
               </div>
               <div class="note-field">
                 <label class="form-title">
                   Note &lpar;optional&rpar;
-                  <input type="text" class="border" />
+                  <input type="text" class="border" id="add-transaction-note" />
                 </label>
               </div>
               <div class="amount-field">
                 <label class="form-title"
                   >Amount
 
-                  <input type="number" class="no-spinner border" />
+                  <input
+                    type="number"
+                    class="no-spinner border"
+                    id="add-transaction-amount"
+                  />
                 </label>
               </div>
             </div>
@@ -444,7 +453,11 @@
                 <div class="transaction-title-field">
                   <label class="form-title">
                     Title
-                    <input type="text" class="border" />
+                    <input
+                      type="text"
+                      class="border"
+                      id="transaction-detail-title"
+                    />
                   </label>
                 </div>
                 <div class="category-field" id="category-selection">
@@ -456,6 +469,7 @@
                         name="category"
                         value="Category List"
                         class="category-select border"
+                        id="transaction-detail-category"
                       >
                         <option value="select">Select Category</option>
                       </select>
@@ -466,21 +480,33 @@
                   <label class="form-title"
                     >Date
 
-                    <input type="date" class="border" />
+                    <input
+                      type="date"
+                      class="border"
+                      id="transaction-detail-date"
+                    />
                   </label>
                 </div>
                 <div class="note-field">
                   <label class="form-title">
                     Note &lpar;optional&rpar;
 
-                    <input type="text" class="border" />
+                    <input
+                      type="text"
+                      class="border"
+                      id="transaction-detail-note"
+                    />
                   </label>
                 </div>
                 <div class="amount-field">
                   <label class="form-title"
                     >Amount
 
-                    <input type="number" class="no-spinner border" />
+                    <input
+                      type="number"
+                      class="no-spinner border"
+                      id="transaction-detail-amount"
+                    />
                   </label>
                 </div>
               </div>
@@ -504,7 +530,5 @@
 
     <script src="./src/validation.ts"></script>
     <script type="module" src="./src/index.ts"></script>
-    <script type="module" src="./src/test.ts"></script>
-    <script type="module" src="./src/expense.ts"></script>
   </body>
 </html>

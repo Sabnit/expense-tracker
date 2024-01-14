@@ -10,7 +10,6 @@ const domContainer = {
     "transaction-detail-container"
   ) as HTMLElement,
   userMenu: document.getElementById("dropdown-menu") as HTMLElement,
-  calendar: document.getElementById("start-calendar") as HTMLInputElement,
 };
 
 export default domContainer;

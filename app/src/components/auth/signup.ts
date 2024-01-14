@@ -1,11 +1,10 @@
-import axios from "axios";
-
 import {
   signupFormContainer,
   signupInputFields,
   singupButtons,
 } from "../../dom/signup/domElements";
-import { validateForm } from "../../utils/loginSignup/commonUtils";
+import { signupAuth } from "../../services/auth";
+import { validateForm } from "../../utils/auth/commonUtils";
 
 const signup = () => {
   singupButtons.registerBtn?.addEventListener("click", async (e: Event) => {
@@ -20,24 +19,7 @@ const signup = () => {
     const isValid = validateForm(signupFormContainer.signupForm);
     if (!isValid) return;
 
-    try {
-      const response = await axios({
-        url: "http://localhost:8000/auth/signup",
-        data: {
-          firstName,
-          lastName,
-          email,
-          password,
-        },
-        method: "POST",
-      });
-
-      if (response.status === 201) {
-        console.log("signup");
-      }
-    } catch (e) {
-      console.log("error", e);
-    }
+    signupAuth({ firstName, lastName, email, password });
   });
 };
 

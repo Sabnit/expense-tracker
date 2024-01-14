@@ -15,8 +15,8 @@ import {
   hideElement,
   removeClassList,
   showElement,
+  showExpense,
 } from "../expenseApp/commonUtils";
-import showExpense from "../expenseApp/functionUtils";
 
 const forms = document.querySelectorAll<HTMLFormElement>(".needs-validation");
 

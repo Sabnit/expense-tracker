@@ -1,13 +1,14 @@
-import domContainer from "../../dom/expenseApp/container";
-import { navLists } from "../../dom/expenseApp/navItems";
-import { hideElement } from "../../utils/expenseApp/commonUtils";
+import { renderExpense, renderIncome } from "../components/expenses/expenseTab";
+import domContainer from "../dom/expenseApp/container";
+import { navLists } from "../dom/expenseApp/navItems";
 import {
   budgetTabIsActive,
   dashboardTabIsActive,
-  incomeTabIsActive,
   expenseTabIsActive,
+  hideElement,
+  incomeTabIsActive,
   userTabIsClicked,
-} from "../../utils/expenseApp/navbarUtils";
+} from "../utils/expenseApp/commonUtils";
 
 const navbarEventListeners = () => {
   navLists.dashboard?.addEventListener("click", () => {
@@ -16,10 +17,12 @@ const navbarEventListeners = () => {
 
   navLists.expense?.addEventListener("click", () => {
     expenseTabIsActive();
+    renderExpense();
   });
 
   navLists.income?.addEventListener("click", () => {
     incomeTabIsActive();
+    renderIncome();
   });
 
   navLists.budget?.addEventListener("click", () => {
@@ -29,7 +32,6 @@ const navbarEventListeners = () => {
   navLists.user?.addEventListener("click", (event: MouseEvent) => {
     userTabIsClicked();
     if (!navLists.user?.contains(event.target as Node)) {
-      console.log("cl");
       // hideElement(domContainer.userMenu);
     }
   });
@@ -39,12 +41,6 @@ const navbarEventListeners = () => {
       hideElement(domContainer.userMenu);
     }
   });
-
-  // document.addEventListener("click", (event: MouseEvent) => {
-  //   if (!domContainer.addexpenseForm?.contains(event.target as Node)) {
-  //     hideElement(domContainer.addexpenseForm);
-  //   }
-  // });
 };
 
 export default navbarEventListeners;
