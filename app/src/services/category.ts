@@ -1,4 +1,5 @@
 import { CATEGORY_URL } from "../constants/expenseApp";
+import { handleError } from "../utils/error";
 
 import { get } from "../utils/http";
 
@@ -10,6 +11,6 @@ export const getCategory = async () => {
 
     return category;
   } catch (error) {
-    console.log("error", error);
+    handleError((error as Error).message);
   }
 };

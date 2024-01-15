@@ -8,7 +8,7 @@ export const loginAuth = async (data: any) => {
 
     localStorage.setItem("accessToken", response.accessToken);
 
-    checkLoggedIn();
+    await checkLoggedIn();
   } catch (e: any) {
     showError();
   }

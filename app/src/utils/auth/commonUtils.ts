@@ -1,3 +1,4 @@
+import { GET_USER } from "../../constants/auth";
 import domContainer from "../../dom/expenseApp/container";
 import {
   loginElement,
@@ -10,17 +11,19 @@ import {
   signupInputFields,
   signupLinks,
 } from "../../dom/signup/domElements";
+import { handleError } from "../error";
 import {
   clearInput,
   hideElement,
+  initializeApp,
   removeClassList,
   showElement,
-  showExpense,
 } from "../expenseApp/commonUtils";
+import { get } from "../http";
 
 const forms = document.querySelectorAll<HTMLFormElement>(".needs-validation");
 
-export const clearValidation = () => {
+export const clearValidationEventListener = () => {
   signupLinks.signup?.addEventListener("click", (e) => {
     e.preventDefault();
 
@@ -42,7 +45,7 @@ export const hideSigup = () => {
   signupFormContainer.signupContainer.style.display = "none";
 };
 
-export const displaySignup = () => {
+export const displaySignupEventListener = () => {
   signupLinks.signup?.addEventListener("click", (e) => {
     e.preventDefault();
     hideError();
@@ -53,7 +56,7 @@ export const displaySignup = () => {
   });
 };
 
-export const displayLogin = () => {
+export const displayLoginEventListener = () => {
   loginLinks.login?.addEventListener("click", (e) => {
     e.preventDefault();
     clearSignupInput();
@@ -86,7 +89,7 @@ export const clearSignupInput = () => {
   clearInput(signupInputFields.password);
 };
 
-export const checkInputField = () => {
+export const checkInputFieldEventListener = () => {
   loginInputFields.email.addEventListener("change", () => {
     if (loginInputFields.email.value == "")
       hideElement(loginElement.emailError);
@@ -109,12 +112,28 @@ export const showLogin = () => {
   hideElement(domContainer.expenseContainer);
 };
 
-export const checkLoggedIn = () => {
+export const checkLoggedIn = async () => {
   const accessToken = localStorage.getItem("accessToken");
 
-  if (accessToken) {
-    showExpense();
-  } else {
+  if (!accessToken) {
+    showLogin();
+    return;
+  }
+
+  try {
+    const user = await get(GET_USER, {
+      Authorization: `Bearer ${accessToken}`,
+    });
+
+    if (!user) {
+      showLogin();
+      return;
+    }
+
+    initializeApp();
+  } catch (error: any) {
+    console.log(error);
+    handleError(error.message);
     showLogin();
   }
 };

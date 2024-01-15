@@ -1,7 +1,6 @@
 import { PaginationQuery } from "./pagination";
 
 export interface ITransaction extends PaginationQuery {
-  title: string;
   amount: number;
   date: string;
   createdBy: string;

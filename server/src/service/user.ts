@@ -12,6 +12,8 @@ export const getUsers = async () => {
 export const getUserById = async (id: string) => {
   const user = UserModel.getUserById(id);
 
+  console.log(user);
+
   if (!user) {
     throw new NotFoundError("User not found");
   }

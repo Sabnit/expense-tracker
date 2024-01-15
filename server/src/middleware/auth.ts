@@ -19,7 +19,7 @@ export const auth = async (req: any, res: Response, next: NextFunction) => {
     req.user = decode;
 
     next();
-  } catch (err) {
-    next(err);
+  } catch (err: any) {
+    next(new UnauthenticatedError(err.message));
   }
 };

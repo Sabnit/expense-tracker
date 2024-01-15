@@ -14,20 +14,18 @@ export async function up(knex: Knex): Promise<void> {
       .uuid("id", { primaryKey: true })
       .defaultTo(knex.raw("uuid_generate_v4()"));
 
-    table.string("title").notNullable();
-
-    table.integer("amount").notNullable();
-
-    table.timestamp("date").notNullable();
-
-    table.string("note").nullable();
-
     table
       .string("category")
       .unsigned()
       .notNullable()
       .references("name")
       .inTable("category");
+
+    table.integer("amount").notNullable();
+
+    table.timestamp("date").notNullable();
+
+    table.string("note").nullable();
 
     table
       .uuid("created_by")

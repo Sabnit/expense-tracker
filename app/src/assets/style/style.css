@@ -305,6 +305,7 @@ body {
   color: #f14c52;
 }
 .expense-container .hero .transaction-list-section {
+  position: relative;
   margin-top: 20px;
   background-color: white;
   border-radius: 10px;
@@ -317,21 +318,30 @@ body {
 .expense-container .hero .transaction-list-section .transaction-details {
   padding: 10px 20px;
 }
-.expense-container .hero .transaction-list-section .transaction-details .transaction-item {
+.expense-container .hero .transaction-list-section .transaction-details .date-section {
+  padding-top: 10px;
+  border-bottom: 1px solid #e5ebee;
+}
+.expense-container .hero .transaction-list-section .transaction-details .date-section .date-data {
+  font-size: 16px;
+}
+.expense-container .hero .transaction-list-section .transaction-details .date-section .transaction-item {
   padding-bottom: 12px;
   display: flex;
   justify-content: space-between;
 }
-.expense-container .hero .transaction-list-section .transaction-details .transaction-item .item-title {
+.expense-container .hero .transaction-list-section .transaction-details .date-section .transaction-item .item-title {
   color: #324c5b;
+  font-size: 16px;
 }
-.expense-container .hero .transaction-list-section .transaction-details .transaction-item .item-amount {
+.expense-container .hero .transaction-list-section .transaction-details .date-section .transaction-item .item-amount {
   font-weight: 700;
+  font-size: 16px;
 }
 .expense-container .hero .transaction-list-section .transaction-detail-container {
   display: flex;
   position: absolute;
-  width: 67%;
+  width: 100%;
 }
 .expense-container .hero .transaction-list-section .transaction-detail-container .transaction-detail-items {
   background-color: #fff;
@@ -408,7 +418,154 @@ body {
   color: #fff;
   font-weight: 600;
 }
+.expense-container .hero .transaction-list-section .page-container {
+  position: absolute;
+  bottom: -43px;
+  right: 0;
+}
+.expense-container .hero .transaction-list-section .page-container .page-link {
+  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+  font-weight: 600;
+  border-radius: 5px;
+}
+.expense-container .hero .transaction-list-section .page-container .page-link:hover {
+  background-color: #ddd;
+  color: black;
+}
+.expense-container .hero .transaction-list-section .page-container .page-navigation {
+  background-color: #fff;
+  color: black;
+}
 
+.modal-overlay-1,
+.modal-overlay-2 {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  z-index: 1000; /* Adjust the z-index to make sure it's above other elements */
+}
+
+.transaction-form-container {
+  max-width: 1020px;
+  padding: 20px 10px 50px 20px !important;
+  padding: 20px;
+  position: absolute;
+  background-color: white;
+  flex-direction: row;
+  width: 100%;
+  border-radius: 5px;
+}
+.transaction-form-container .uis-times-circle {
+  position: absolute;
+  top: -23px;
+  right: -15px;
+  font-size: 2em;
+}
+.transaction-form-container .transaction-detail-fields {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.transaction-form-container .transaction-detail-fields .transaction-title-field .form-title,
+.transaction-form-container .transaction-detail-fields .category-field .form-title,
+.transaction-form-container .transaction-detail-fields .date-field .form-title,
+.transaction-form-container .transaction-detail-fields .note-field .form-title,
+.transaction-form-container .transaction-detail-fields .amount-field .form-title {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  color: #7b93a4;
+  padding-bottom: 3px;
+}
+.transaction-form-container .transaction-detail-fields .transaction-title-field .border,
+.transaction-form-container .transaction-detail-fields .category-field .border,
+.transaction-form-container .transaction-detail-fields .date-field .border,
+.transaction-form-container .transaction-detail-fields .note-field .border,
+.transaction-form-container .transaction-detail-fields .amount-field .border {
+  padding: 5px;
+  border: 1px solid #dee2e6 !important;
+  border-radius: 4px;
+}
+.transaction-form-container .transaction-submit {
+  position: absolute;
+  bottom: 8px;
+  right: 11px;
+  padding-top: 25px;
+  display: flex;
+  justify-content: end;
+}
+.transaction-form-container .transaction-submit .submit-button {
+  background-color: rgb(67, 132, 244);
+  border-radius: 4px;
+  padding: 10px 15px;
+  font-weight: 600;
+  color: white;
+}
+
+.highlight-section-1,
+.highlight-section-2 {
+  padding: 20px;
+  position: fixed;
+  width: 100%;
+  transform: translate(-50%, -50%);
+  z-index: 1001; /* Make sure it's above the overlay */
+}
+
+.highlight-section-1 {
+  top: 15%;
+  left: 65%;
+}
+
+.highlight-section-2 {
+  top: 7%;
+  left: 139%;
+}
+
+.email-error,
+.password-error {
+  display: none;
+}
+
+.login-container,
+.signup-container {
+  display: none;
+}
+
+.error-handler {
+  display: none;
+  background-color: red;
+  width: 200px;
+  position: absolute;
+  top: 48px;
+  right: 10px;
+}
+
+.fade-in {
+  animation: fadeIn ease 5s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 .navbar {
   padding: 0 1em !important;
   display: flex;
@@ -446,7 +603,6 @@ body {
 .navbar .profile-section .dropdown-menu {
   position: absolute;
   display: none;
-  top: 35px;
   left: -114px;
 }
 

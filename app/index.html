@@ -28,7 +28,11 @@
   <body>
     <!-- Login Page -->
 
-    <section id="login-container" class="vh-100" style="background-color: #eee">
+    <section
+      id="login-container"
+      class="vh-100 login-container"
+      style="background-color: #eee"
+    >
       <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-lg-12 col-xl-11">
@@ -97,7 +101,11 @@
                       <div
                         class="d-flex justify-content-center mx-4 mb-3 mb-lg-4"
                       >
-                        <button type="submit" class="btn btn-primary btn-lg">
+                        <button
+                          type="submit"
+                          class="btn btn-primary btn-lg"
+                          id="login-btn"
+                        >
                           Login
                         </button>
                       </div>
@@ -139,7 +147,7 @@
     <!-- Signup Page -->
     <section
       id="signup-container"
-      class="vh-100"
+      class="vh-100 signup-container"
       style="background-color: #eee"
     >
       <div class="container h-100">
@@ -249,6 +257,7 @@
                           Register
                         </button>
                       </div>
+
                       <div>
                         <p class="d-flex justify-content-center mb-0">
                           Have an account? &nbsp;
@@ -312,7 +321,7 @@
               <a class="dropdown-item" href="#">Settings</a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">Logout</a>
+              <a class="dropdown-item" href="#" id="logout-btn">Logout</a>
             </li>
           </ul>
         </div>
@@ -350,16 +359,6 @@
           <div class="transaction-form-container" id="add-transaction-form">
             <i class="uis uis-times-circle" id="close-icon"></i>
             <div class="transaction-detail-fields">
-              <div class="transaction-title-field">
-                <label class="form-title">
-                  Title
-                  <input
-                    type="text"
-                    class="border"
-                    id="add-transaction-title"
-                  />
-                </label>
-              </div>
               <div class="category-field" id="category-selection">
                 <label class="form-title"
                   >Category
@@ -433,20 +432,12 @@
           </div>
         </div>
 
-        <div class="transaction-list-section">
-          <div class="date-field">
-            <span class="date-field" id="date-field">Jan 20,2024</span>
+        <div class="transaction-list-section" id="transaction-list-section">
+          <div class="page-container">
+            <a href="#" class="page-navigation page-link">&laquo; Previous</a>
+            <a href="#" class="page-navigation page-link">Next &raquo;</a>
           </div>
-          <ul class="transaction-details" id="transaction-details">
-            <li class="transaction-item">
-              <span class="item-title"> Gifts </span>
-              <span class="item-amount" id="item-amount"> 400</span>
-            </li>
-            <li class="transaction-item">
-              <span class="item-title"> Transport </span>
-              <span class="item-amount" id="item-amount"> 400</span>
-            </li>
-          </ul>
+          <ul class="transaction-details" id="transaction-details"></ul>
           <div
             class="transaction-detail-container"
             id="transaction-detail-container"
@@ -454,16 +445,6 @@
             <div class="transaction-detail-items">
               <i class="uis uis-times-circle" id="close-transaction-icon"></i>
               <div class="transaction-detail-fields">
-                <div class="transaction-title-field">
-                  <label class="form-title">
-                    Title
-                    <input
-                      type="text"
-                      class="border"
-                      id="transaction-detail-title"
-                    />
-                  </label>
-                </div>
                 <div class="category-field" id="category-selection">
                   <label class="form-title"
                     >Category
@@ -531,7 +512,13 @@
         </div>
       </section>
     </section>
-
+    <div id="modal-overlay-1" class="modal-overlay-1"></div>
+    <div id="modal-overlay-2" class="modal-overlay-2"></div>
+    <div class="error-handler fade-in fade-out" id="error-handler">
+      <div class="error">Error</div>
+      <div class="error-msg" id="error-msg"></div>
+    </div>
+    <!-- <div id="highlight-section"></div> -->
     <script src="./src/validation.ts"></script>
     <script type="module" src="./src/index.ts"></script>
   </body>

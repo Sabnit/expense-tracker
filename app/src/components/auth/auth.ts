@@ -1,23 +1,21 @@
 import {
-  checkInputField,
-  clearValidation,
-  displayLogin,
-  displaySignup,
-  hideError,
-  hideSigup,
+  checkInputFieldEventListener,
+  checkLoggedIn,
+  clearValidationEventListener,
+  displayLoginEventListener,
+  displaySignupEventListener,
 } from "../../utils/auth/commonUtils";
-import login from "./login";
-import signup from "./signup";
+import addLoginEventListener from "./login";
+import signupEventListener from "./signup";
 
-const auth = () => {
-  hideSigup();
-  login();
-  displaySignup();
-  clearValidation();
-  signup();
-  hideError();
-  displayLogin();
-  checkInputField();
+const setupAuthentication = async () => {
+  await checkLoggedIn();
+  addLoginEventListener();
+  displaySignupEventListener();
+  clearValidationEventListener();
+  signupEventListener();
+  displayLoginEventListener();
+  checkInputFieldEventListener();
 };
 
-export default auth;
+export default setupAuthentication;

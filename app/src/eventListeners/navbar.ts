@@ -1,4 +1,9 @@
-import { renderExpense, renderIncome } from "../components/expenses/expenseTab";
+import {
+  renderDashboard,
+  renderExpense,
+  renderIncome,
+} from "../components/expenses/expenseTab";
+
 import domContainer from "../dom/expenseApp/container";
 import { navLists } from "../dom/expenseApp/navItems";
 import {
@@ -13,6 +18,7 @@ import {
 const navbarEventListeners = () => {
   navLists.dashboard?.addEventListener("click", () => {
     dashboardTabIsActive();
+    renderDashboard();
   });
 
   navLists.expense?.addEventListener("click", () => {

@@ -1,4 +1,5 @@
 const domButton = {
+  loginBtn: document.getElementById("login-btn"),
   addTransactionBtn: document?.getElementById(
     "add-transaction-button"
   ) as HTMLElement,
@@ -12,6 +13,7 @@ const domButton = {
   cancelTransactionBtn: document?.getElementById(
     "cancel-button"
   ) as HTMLElement,
+  logoutBtn: document?.getElementById("logout-btn"),
 };
 
 export default domButton;

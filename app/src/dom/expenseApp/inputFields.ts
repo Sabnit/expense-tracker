@@ -6,7 +6,6 @@ export const domInputFields = {
 };
 
 export const domAddTransactionInputs = {
-  title: document.getElementById("add-transaction-title") as HTMLInputElement,
   category: document.getElementById(
     "add-transaction-category"
   ) as HTMLInputElement,
@@ -16,7 +15,6 @@ export const domAddTransactionInputs = {
 };
 
 export const domTransactionDetailInputs = {
-  title: document.getElementById("transaction-detail-title"),
   category: document.getElementById("transaction-detail-category"),
   date: document.getElementById("transaction-detail-date"),
   note: document.getElementById("transaction-detail-note"),

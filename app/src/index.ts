@@ -1,5 +1,5 @@
-import auth from "./components/auth/auth";
-import app from "./components/expenses";
+import setupAuthentication from "./components/auth/auth";
+import { initializeEventListeners } from "./eventListeners";
 
-auth();
-app();
+initializeEventListeners();
+setupAuthentication();

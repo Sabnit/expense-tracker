@@ -1,12 +1,6 @@
 import Joi from "joi";
 
-export const createUserSchema = Joi.object({
-  title: Joi.string().required().max(255).messages({
-    "string.base": "Title must be a string",
-    "string.empty": "Title cannot be empty",
-    "any.required": "Title is required",
-    "string.max": "Title must be at most 255 characters",
-  }),
+export const createExpenseSchema = Joi.object({
   amount: Joi.number().required().messages({
     "number.base": "Amount must be a number",
     "any.required": "Amount is required",

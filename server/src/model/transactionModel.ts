@@ -6,11 +6,9 @@ import { start } from "repl";
 export default class TransactionModel extends BaseModel {
   private static injectFilter(query: Knex.QueryBuilder, params: any) {
     if (params.type) {
-      query
-        .innerJoin("category", "transaction.category", "category.name")
-        .where({
-          "category.type": params.type,
-        });
+      query.where({
+        "category.type": params.type,
+      });
     }
 
     if (params.startDate) {
@@ -25,13 +23,13 @@ export default class TransactionModel extends BaseModel {
   static async getTransaction(params: any) {
     const query = this.queryBuilder()
       .select({
-        title: "title",
         amount: "amount",
         date: "date",
-        categoryName: "category_name",
-        createdBy: "created_by",
+        categoryName: "category",
+        categoryType: "category.type",
       })
       .from("transaction")
+      .join("category", "transaction.category", "=", "category.name")
       .where({ created_by: params.createdBy });
 
     this.injectFilter(query, params);
@@ -45,6 +43,7 @@ export default class TransactionModel extends BaseModel {
     const query = this.queryBuilder()
       .table("transaction")
       .where({ Created_by: params.createdBy })
+      .join("category", "transaction.category", "=", "category.name")
       .count({ count: "transaction.id" })
       .first();
 
@@ -70,7 +69,6 @@ export default class TransactionModel extends BaseModel {
   static async getTransactionById(id: string) {
     return this.queryBuilder()
       .select({
-        title: "title",
         amount: "amount",
         date: "date",
         categoryName: "category",

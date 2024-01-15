@@ -3,9 +3,9 @@ import {
   loginInputFields,
 } from "../../dom/login/domElements";
 import { loginAuth } from "../../services/auth";
-import { checkLoggedIn, validateForm } from "../../utils/auth/commonUtils";
+import { validateForm } from "../../utils/auth/commonUtils";
 
-const login = () => {
+const addLoginEventListener = () => {
   loginFormContainer.loginForm.addEventListener("submit", async (e: Event) => {
     e.preventDefault();
 
@@ -20,6 +20,4 @@ const login = () => {
   });
 };
 
-checkLoggedIn();
-
-export default login;
+export default addLoginEventListener;

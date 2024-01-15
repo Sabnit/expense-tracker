@@ -9,7 +9,7 @@ export const loginInputFields = {
 };
 
 export const loginLinks = {
-  login: document.getElementById("login-link") as HTMLAnchorElement,
+  login: document.getElementById("login-link") as HTMLButtonElement,
 };
 
 export const loginElement = {

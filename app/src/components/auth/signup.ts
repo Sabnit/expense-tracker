@@ -6,7 +6,7 @@ import {
 import { signupAuth } from "../../services/auth";
 import { validateForm } from "../../utils/auth/commonUtils";
 
-const signup = () => {
+const signupEventListener = () => {
   singupButtons.registerBtn?.addEventListener("click", async (e: Event) => {
     e.preventDefault();
 
@@ -23,4 +23,4 @@ const signup = () => {
   });
 };
 
-export default signup;
+export default signupEventListener;
