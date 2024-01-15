@@ -1,6 +1,8 @@
 @import "./partials/reset.scss";
-@import "./partials/varaiables.scss";
+@import "./partials/variables.scss";
 @import "./partials/base.scss";
 @import "./partials/layout.scss";
+@import "./vendors/bootstrap";
 
 @import "./partials/navbar.scss";
+@import "./vendors/iconscout";

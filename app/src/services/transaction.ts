@@ -5,7 +5,7 @@ import {
 } from "../constants/expenseApp";
 import { showError } from "../utils/auth/commonUtils";
 import { handleError } from "../utils/error";
-import { get, post } from "../utils/http";
+import { get, post, update } from "../utils/http";
 
 export const storeTransaction = async (data: any) => {
   try {
@@ -15,7 +15,6 @@ export const storeTransaction = async (data: any) => {
       const response = await post(TRANSACTION_URL, data, {
         Authorization: `Bearer ${accessToken}`,
       });
-      console.log("Added New ");
     }
   } catch (error: unknown) {
     handleError((error as Error).message);
@@ -59,6 +58,21 @@ export const getAllIncomeTransactions = async () => {
 
     if (accessToken) {
       const response = await get(INCOME_URL, {
+        Authorization: `Bearer ${accessToken}`,
+      });
+      return response.data;
+    }
+  } catch (error) {
+    handleError((error as Error).message);
+  }
+};
+
+export const updateTransaction = async () => {
+  try {
+    const accessToken = localStorage.getItem("accessToken");
+
+    if (accessToken) {
+      const response = await update(INCOME_URL, {
         Authorization: `Bearer ${accessToken}`,
       });
       return response.data;

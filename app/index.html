@@ -2,19 +2,13 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Expense Tracker</title>
     <link rel="stylesheet" href="./src/assets/style/style.css" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
       rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
     />
     <link
       rel="stylesheet"
@@ -357,56 +351,65 @@
           </div>
 
           <div class="transaction-form-container" id="add-transaction-form">
-            <i class="uis uis-times-circle" id="close-icon"></i>
-            <div class="transaction-detail-fields">
-              <div class="category-field" id="category-selection">
-                <label class="form-title"
-                  >Category
+            <div class="transaction-form-wrapper">
+              <i class="uis uis-times-circle" id="close-icon"></i>
+              <div class="transaction-detail-fields">
+                <div class="category-field" id="category-selection">
+                  <label class="form-title"
+                    >Category
 
-                  <div class="category-options">
-                    <select
-                      value="Category List"
-                      class="category-select border"
-                      id="add-transaction-category"
-                    >
-                      <option value="select">Select Category</option>
-                    </select>
-                  </div>
-                </label>
-              </div>
-              <div class="date-field">
-                <label class="form-title"
-                  >Date
+                    <div class="category-options">
+                      <select
+                        value="Category List"
+                        class="category-select border"
+                        id="add-transaction-category"
+                      >
+                        <option value="select">Select Category</option>
+                      </select>
+                    </div>
+                  </label>
+                </div>
+                <div class="date-field">
+                  <label class="form-title">
+                    Date
+                    <input
+                      type="date"
+                      class="border"
+                      id="add-transaction-date"
+                    />
+                  </label>
+                </div>
+                <div class="note-field">
+                  <label class="form-title">
+                    Note &lpar;optional&rpar;
+                    <input
+                      type="text"
+                      class="border"
+                      id="add-transaction-note"
+                    />
+                  </label>
+                </div>
+                <div class="amount-field">
+                  <label class="form-title"
+                    >Amount
 
-                  <input type="date" class="border" id="add-transaction-date" />
-                </label>
+                    <input
+                      type="number"
+                      class="no-spinner border"
+                      id="add-transaction-amount"
+                    />
+                  </label>
+                </div>
               </div>
-              <div class="note-field">
-                <label class="form-title">
-                  Note &lpar;optional&rpar;
-                  <input type="text" class="border" id="add-transaction-note" />
-                </label>
+              <div class="transaction-submit">
+                <button
+                  class="submit-button"
+                  type="submit"
+                  id="submit-transaction-button"
+                >
+                  Add Transaction
+                </button>
               </div>
-              <div class="amount-field">
-                <label class="form-title"
-                  >Amount
-
-                  <input
-                    type="number"
-                    class="no-spinner border"
-                    id="add-transaction-amount"
-                  />
-                </label>
-              </div>
-            </div>
-            <div class="transaction-submit">
-              <button
-                class="submit-button"
-                type="submit"
-                id="submit-transaction-button"
-              >
-                Add Transaction
-              </button>
             </div>
           </div>
         </div>

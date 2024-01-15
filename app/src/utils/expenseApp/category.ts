@@ -1,62 +1,74 @@
-const category = [
+export const categoryIconList = [
   {
     name: "Business",
-    type: "Income",
-    icon: "fa-solid fa-briefcase",
+    icon: "fa-solid fa-briefcase ",
   },
   {
-    name: "Extra Income",
-    type: "Income",
-    icon: "fa-solid fa-coins",
+    name: "Extra income",
+    icon: "fa-solid fa-dollar-sign",
   },
   {
     name: "Gift",
-    type: "Income",
     icon: "fa-solid fa-gift",
   },
   {
     name: "Insurance Payment",
-    type: "Income",
     icon: "fa-solid fa-hand-holding-heart",
   },
   {
     name: "Salary",
-    type: "Income",
     icon: "fa-solid fa-dollar-sign",
   },
   {
     name: "Other",
-    type: "Income",
     icon: "fa-solid fa-coins",
   },
   {
     name: "Car",
-    type: "Expense",
     icon: "fa-solid fa-car",
   },
   {
     name: "Education",
-    type: "Expense",
     icon: "fa-solid fa-school",
   },
   {
     name: "Entertainment",
-    type: "Expense",
     icon: "fa-solid fa-gamepad",
   },
   {
     name: "Food & Drink",
-    type: "Expense",
     icon: "fa-solid fa-utensils",
   },
   {
     name: "Healthcare",
-    type: "Expense",
     icon: "fa-solid fa-notes-medical",
   },
   {
     name: "Home",
-    type: "Expense",
     icon: "fa-solid fa-house",
+  },
+  {
+    name: "Work",
+    icon: "fa-solid fa-building",
+  },
+  {
+    name: "Travel",
+    icon: "fa-solid fa-route",
+  },
+  {
+    name: "Transport",
+    icon: "fa-solid fa-train",
+  },
+  {
+    name: "Shopping",
+    icon: "fa-solid fa-bag-shopping",
+  },
+  {
+    name: "Family",
+    icon: "fa-solid fa-users",
+  },
+  {
+    name: "Personal",
+    icon: "fa-solid fa-user",
   },
 ];

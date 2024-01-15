@@ -42,3 +42,26 @@ export const get = async (url: string, headers?: Record<string, string>) => {
 
   return response;
 };
+
+export const update = async (
+  url: string,
+  data: any,
+  headers?: Record<string, string>
+) => {
+  const response = await axios({
+    url,
+    data,
+    method: "PUT",
+    headers,
+  })
+    .then((res) => res.data)
+    .catch((error) => {
+      if (error.response.status === 401) {
+        localStorage.clear();
+        showLogin();
+      }
+      throw error.response.data;
+    });
+
+  return response;
+};

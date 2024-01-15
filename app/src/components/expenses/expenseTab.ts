@@ -1,3 +1,4 @@
+import { categoryIconList } from "../../utils/expenseApp/category";
 import domContainer from "../../dom/expenseApp/container";
 import { ITransaction } from "../../interface/transaction";
 import {
@@ -23,9 +24,10 @@ export const renderIncome = () => {
 
 export const renderDashboard = () => {
   displayTransactions();
+
   hideElement(domContainer.transactionDetailContainer);
 };
 
 export const renderTransactions = (transactions: ITransaction[]) => {
-  createTransactionList(transactions);
+  createTransactionList(transactions, categoryIconList);
 };

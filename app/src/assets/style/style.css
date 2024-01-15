@@ -1,3 +1,5 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css");
+@import url("https://unicons.iconscout.com/release-pro/v4.0.0/css/line.css");
 html,
 body,
 div,
@@ -169,7 +171,7 @@ body {
 }
 .expense-container .hero {
   margin: 0 auto;
-  padding: 20px 250px;
+  padding: 20px 325px;
 }
 .expense-container .hero .top-section {
   display: flex;
@@ -193,58 +195,6 @@ body {
 .expense-container .hero .top-section .calendar-container .date-picker .end-date {
   border: none;
   padding: 5px 10px;
-}
-.expense-container .hero .top-section .transaction-form-container {
-  display: none;
-  padding: 20px;
-  position: absolute;
-  background-color: white;
-  flex-direction: row;
-  width: 100%;
-  border-radius: 5px;
-}
-.expense-container .hero .top-section .transaction-form-container .uis-times-circle {
-  position: absolute;
-  top: -23px;
-  right: -15px;
-  font-size: 2em;
-}
-.expense-container .hero .top-section .transaction-form-container .transaction-detail-fields {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-.expense-container .hero .top-section .transaction-form-container .transaction-detail-fields .transaction-title-field .form-title,
-.expense-container .hero .top-section .transaction-form-container .transaction-detail-fields .category-field .form-title,
-.expense-container .hero .top-section .transaction-form-container .transaction-detail-fields .date-field .form-title,
-.expense-container .hero .top-section .transaction-form-container .transaction-detail-fields .note-field .form-title,
-.expense-container .hero .top-section .transaction-form-container .transaction-detail-fields .amount-field .form-title {
-  display: flex;
-  flex-direction: column;
-  font-size: 12px;
-  color: #7b93a4;
-  padding-bottom: 3px;
-}
-.expense-container .hero .top-section .transaction-form-container .transaction-detail-fields .transaction-title-field .border,
-.expense-container .hero .top-section .transaction-form-container .transaction-detail-fields .category-field .border,
-.expense-container .hero .top-section .transaction-form-container .transaction-detail-fields .date-field .border,
-.expense-container .hero .top-section .transaction-form-container .transaction-detail-fields .note-field .border,
-.expense-container .hero .top-section .transaction-form-container .transaction-detail-fields .amount-field .border {
-  padding: 5px;
-  border: 1px solid #dee2e6 !important;
-  border-radius: 4px;
-}
-.expense-container .hero .top-section .transaction-form-container .transaction-submit {
-  padding-top: 25px;
-  display: flex;
-  justify-content: end;
-}
-.expense-container .hero .top-section .transaction-form-container .transaction-submit .submit-button {
-  background-color: rgb(67, 132, 244);
-  border-radius: 4px;
-  padding: 10px 15px;
-  font-weight: 600;
-  color: white;
 }
 .expense-container .hero .balance-section {
   padding-top: 20px;
@@ -326,11 +276,15 @@ body {
   font-size: 16px;
 }
 .expense-container .hero .transaction-list-section .transaction-details .date-section .transaction-item {
-  padding-bottom: 12px;
+  padding: 17px 0 15px 30px;
   display: flex;
   justify-content: space-between;
 }
-.expense-container .hero .transaction-list-section .transaction-details .date-section .transaction-item .item-title {
+.expense-container .hero .transaction-list-section .transaction-details .date-section .transaction-item .category-container {
+  display: flex;
+  gap: 10px;
+}
+.expense-container .hero .transaction-list-section .transaction-details .date-section .transaction-item .category-container .item-title {
   color: #324c5b;
   font-size: 16px;
 }
@@ -447,12 +401,13 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
-  z-index: 1000; /* Adjust the z-index to make sure it's above other elements */
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
 }
 
 .transaction-form-container {
-  max-width: 1020px;
+  display: none;
+  max-width: 860px;
   padding: 20px 10px 50px 20px !important;
   padding: 20px;
   position: absolute;
@@ -461,48 +416,51 @@ body {
   width: 100%;
   border-radius: 5px;
 }
-.transaction-form-container .uis-times-circle {
+.transaction-form-container .transaction-form-wrapper {
+  position: relative;
+}
+.transaction-form-container .transaction-form-wrapper .uis-times-circle {
   position: absolute;
-  top: -23px;
-  right: -15px;
+  top: -35px;
+  right: -25px;
   font-size: 2em;
 }
-.transaction-form-container .transaction-detail-fields {
+.transaction-form-container .transaction-form-wrapper .transaction-detail-fields {
   position: relative;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.transaction-form-container .transaction-detail-fields .transaction-title-field .form-title,
-.transaction-form-container .transaction-detail-fields .category-field .form-title,
-.transaction-form-container .transaction-detail-fields .date-field .form-title,
-.transaction-form-container .transaction-detail-fields .note-field .form-title,
-.transaction-form-container .transaction-detail-fields .amount-field .form-title {
+.transaction-form-container .transaction-form-wrapper .transaction-detail-fields .transaction-title-field .form-title,
+.transaction-form-container .transaction-form-wrapper .transaction-detail-fields .category-field .form-title,
+.transaction-form-container .transaction-form-wrapper .transaction-detail-fields .date-field .form-title,
+.transaction-form-container .transaction-form-wrapper .transaction-detail-fields .note-field .form-title,
+.transaction-form-container .transaction-form-wrapper .transaction-detail-fields .amount-field .form-title {
   display: flex;
   flex-direction: column;
   font-size: 12px;
   color: #7b93a4;
   padding-bottom: 3px;
 }
-.transaction-form-container .transaction-detail-fields .transaction-title-field .border,
-.transaction-form-container .transaction-detail-fields .category-field .border,
-.transaction-form-container .transaction-detail-fields .date-field .border,
-.transaction-form-container .transaction-detail-fields .note-field .border,
-.transaction-form-container .transaction-detail-fields .amount-field .border {
+.transaction-form-container .transaction-form-wrapper .transaction-detail-fields .transaction-title-field .border,
+.transaction-form-container .transaction-form-wrapper .transaction-detail-fields .category-field .border,
+.transaction-form-container .transaction-form-wrapper .transaction-detail-fields .date-field .border,
+.transaction-form-container .transaction-form-wrapper .transaction-detail-fields .note-field .border,
+.transaction-form-container .transaction-form-wrapper .transaction-detail-fields .amount-field .border {
   padding: 5px;
   border: 1px solid #dee2e6 !important;
   border-radius: 4px;
 }
-.transaction-form-container .transaction-submit {
+.transaction-form-container .transaction-form-wrapper .transaction-submit {
   position: absolute;
-  bottom: 8px;
-  right: 11px;
+  bottom: -46px;
+  right: 0px;
   padding-top: 25px;
   display: flex;
   justify-content: end;
 }
-.transaction-form-container .transaction-submit .submit-button {
+.transaction-form-container .transaction-form-wrapper .transaction-submit .submit-button {
   background-color: rgb(67, 132, 244);
   border-radius: 4px;
   padding: 10px 15px;
@@ -521,7 +479,7 @@ body {
 
 .highlight-section-1 {
   top: 15%;
-  left: 65%;
+  left: 70%;
 }
 
 .highlight-section-2 {
@@ -566,6 +524,67 @@ body {
     opacity: 0;
   }
 }
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+  min-width: 200px;
+  background-color: #1c2028;
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.selected-display {
+  color: #fff;
+}
+
+.arrow {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.3s;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  z-index: 99;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #1c2028;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.dropdown li {
+  padding: 10px;
+  line-height: 1.5;
+  color: #fff;
+  transition: background-color 0.3s;
+}
+
+.dropdown li:hover {
+  background-color: #323742;
+  border-radius: 8px;
+}
+
+.custom-dropdown.active .arrow {
+  transform: rotate(180deg);
+}
+
+.custom-dropdown.active .dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+
 .navbar {
   padding: 0 1em !important;
   display: flex;

@@ -1,3 +1,4 @@
+import { categoryIconList } from "../../utils/expenseApp/category";
 import {
   getAllExpenseTransactions,
   getAllIncomeTransactions,
@@ -9,7 +10,7 @@ import { renderTransactions } from "./expenseTab";
 export const displayTransactions = async () => {
   const transactionObj = await getAllTransactions();
 
-  createTransactionList(transactionObj);
+  createTransactionList(transactionObj, categoryIconList);
 };
 
 export const displayIncomeTransactions = async () => {
