@@ -1,26 +1,25 @@
-import { categoryIconList } from "../../utils/expenseApp/category";
 import {
   getAllExpenseTransactions,
   getAllIncomeTransactions,
-  getAllTransactions,
+  getAllTransactionsPerPage,
 } from "../../services/transaction";
+import { categoryIconList } from "../../utils/expenseApp/category";
 import { createTransactionList } from "../../utils/expenseApp/commonUtils";
 import { renderTransactions } from "./expenseTab";
 
 export const displayTransactions = async () => {
-  const transactionObj = await getAllTransactions();
-
-  createTransactionList(transactionObj, categoryIconList);
+  const transactionObj = await getAllTransactionsPerPage(1);
+  createTransactionList(transactionObj.data, categoryIconList);
 };
 
 export const displayIncomeTransactions = async () => {
-  const transactions = await getAllIncomeTransactions();
+  const transactions = await getAllIncomeTransactions(1);
 
-  renderTransactions(transactions);
+  renderTransactions(transactions.data);
 };
 
 export const displayExpenseTransactions = async () => {
-  const transactions = await getAllExpenseTransactions();
+  const transactions = await getAllExpenseTransactions(1);
 
-  renderTransactions(transactions);
+  renderTransactions(transactions.data);
 };

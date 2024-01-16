@@ -18,6 +18,10 @@ const domContainer = {
   ) as HTMLElement,
   errorContainer: document.getElementById("error-handler") as HTMLElement,
   errorMsg: document.getElementById("error-msg") as HTMLElement,
+  alertContainer: document.getElementById("alert-handler") as HTMLElement,
+  alertMsg: document.getElementById("alert-msg") as HTMLElement,
+  successContainer: document.getElementById("success-handler") as HTMLElement,
+  successMsg: document.getElementById("success-msg") as HTMLElement,
 };
 
 export default domContainer;

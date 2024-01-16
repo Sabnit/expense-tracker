@@ -14,6 +14,12 @@ const domButton = {
     "cancel-button"
   ) as HTMLElement,
   logoutBtn: document?.getElementById("logout-btn"),
+  previousPageLink: document.getElementById(
+    "previous-page-navigation"
+  ) as HTMLAnchorElement,
+  nextPageLink: document.getElementById(
+    "next-page-navigation"
+  ) as HTMLButtonElement,
 };
 
 export default domButton;

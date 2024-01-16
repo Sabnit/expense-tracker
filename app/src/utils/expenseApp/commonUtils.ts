@@ -2,16 +2,25 @@ import { navItems, navLists } from "../../dom/expenseApp/navItems";
 import domContainer from "../../dom/expenseApp/container";
 import { ICategory } from "../../interface/category";
 import {
-  domAddTransactionInputs,
   domInputFields,
+  domTransactionDetailInputs,
 } from "../../dom/expenseApp/inputFields";
 import { ITransaction } from "../../interface/transaction";
 import { renderDashboard } from "../../components/expenses/expenseTab";
 import { format } from "date-fns";
+import { categoryIconList } from "./category";
+import { handleAlert, handleError } from "../messageHandler";
+import domButton from "../../dom/expenseApp/button";
+import {
+  getAllExpenseTransactions,
+  getAllIncomeTransactions,
+  getAllTransactionsPerPage,
+} from "../../services/transaction";
 
-const TABS = ["dashboard", "expense", "income", "budget"];
+// const TABS = ["dashboard", "expense", "income", "budget"];
+const TABS = ["dashboard", "expense", "income"];
 
-let activeTab: string | null = null;
+let activeTab: string;
 
 export const setActiveTab = (tab: string) => {
   activeTab = tab;
@@ -24,7 +33,6 @@ export const getActiveTab = () => {
   for (const tab of TABS) {
     activeTabState[tab] = activeTab === tab;
   }
-
   return activeTabState;
 };
 
@@ -73,6 +81,7 @@ export const createList = (list: any) => {
   defaultOption.value = "";
   defaultOption.text = "Select a category";
   domInputFields.categorySelect.add(defaultOption);
+  domTransactionDetailInputs.category.append(defaultOption);
 
   list.forEach((category: string) => {
     const option = document.createElement("option");
@@ -80,169 +89,18 @@ export const createList = (list: any) => {
     option.value = category;
     option.text = category;
     domInputFields.categorySelect.add(option);
+    domTransactionDetailInputs.category.add(option);
   });
 };
-// export const createList = (list: any, iconList: any) => {
-//   const categoryListContainer = document.createElement("div");
-//   categoryListContainer.classList.add("custom-dropdown");
-
-//   const selectedDisplay = document.createElement("div");
-//   selectedDisplay.classList.add("selected-display");
-//   selectedDisplay.textContent = "Select a category";
-//   categoryListContainer.appendChild(selectedDisplay);
-
-//   const categoryDropdown = document.createElement("ul");
-//   categoryDropdown.classList.add("dropdown");
-//   categoryDropdown.classList.add("scrollable-menu");
-
-//   list.forEach((category: string) => {
-//     const listItem = document.createElement("li");
-
-//     const iconClass = iconList.find(
-//       (iconItem: any) => iconItem.name === category
-//     )?.icon;
-
-//     if (iconClass) {
-//       const iconElement = document.createElement("i");
-//       iconElement.className = iconClass;
-
-//       // Append the icon element to the list item
-//       listItem.appendChild(iconElement);
-//     }
-
-//     const textElement = document.createElement("span");
-//     textElement.textContent = category;
-
-//     // Append the text element to the list item
-//     listItem.appendChild(textElement);
-
-//     // Append the list item to the dropdown
-//     categoryDropdown.appendChild(listItem);
-//   });
-
-//   // Append the dropdown to the category list container
-//   categoryListContainer.appendChild(categoryDropdown);
-
-//   const container = domAddTransactionInputs.category;
-//   if (container) {
-//     container.innerHTML = "";
-//     container.appendChild(categoryListContainer);
-//   }
-
-//   // Add the event listeners for dropdown functionality
-//   const selectedAll = document.querySelectorAll(".custom-dropdown");
-
-//   selectedAll.forEach((selected) => {
-//     const optionsContainer = selected.querySelector(".dropdown");
-//     const optionsList = selected.querySelectorAll(".dropdown li");
-
-//     selected.addEventListener("click", () => {
-//       let arrow = selected.querySelector(".arrow");
-
-//       if (selected.classList.contains("active")) {
-//         handleDropdown(selected, arrow, false);
-//       } else {
-//         let currentActive = document.querySelector(".custom-dropdown.active");
-
-//         if (currentActive) {
-//           let anotherArrow = currentActive.querySelector(".arrow");
-//           handleDropdown(currentActive, anotherArrow, false);
-//         }
-
-//         handleDropdown(selected, arrow, true);
-//       }
-//     });
-
-//     // update the display of the dropdown
-//     for (let o of optionsList) {
-//       o.addEventListener("click", () => {
-//         selected.querySelector(".selected-display").textContent = o.textContent;
-//         handleDropdown(selected, selected.querySelector(".arrow"), false);
-//       });
-//     }
-//   });
-
-//   // check if anything else other than the dropdown is clicked
-//   window.addEventListener("click", function (e) {
-//     if (!e.target.closest(".custom-dropdown")) {
-//       closeAllDropdowns();
-//     }
-//   });
-
-//   // close all the dropdowns
-//   function closeAllDropdowns() {
-//     const selectedAll = document.querySelectorAll(".custom-dropdown");
-//     selectedAll.forEach((selected) => {
-//       handleDropdown(selected, selected.querySelector(".arrow"), false);
-//     });
-//   }
-
-//   // open/close the dropdown
-//   function handleDropdown(dropdown, arrow, open) {
-//     if (dropdown && arrow) {
-//       if (open) {
-//         arrow.classList.add("rotated");
-//         dropdown.classList.add("active");
-//       } else {
-//         arrow.classList.remove("rotated");
-//         dropdown.classList.remove("active");
-//       }
-//     }
-//   }
-// };
-
-// export const createList = (list: any, iconList: any) => {
-//   const categoryListContainer = document.createElement("ul");
-//   categoryListContainer.classList.add("category-list");
-
-//   list.forEach((category: string) => {
-//     const listItem = document.createElement("li");
-
-//     const iconClass = iconList.find(
-//       (iconItem: any) => iconItem.name === category
-//     )?.icon;
-
-//     if (iconClass) {
-//       const iconElement = document.createElement("i");
-//       iconElement.className = iconClass;
-
-//       // Append the icon element to the list item
-//       listItem.appendChild(iconElement);
-//     }
-
-//     const textElement = document.createElement("span");
-//     textElement.textContent = category;
-
-//     // Append the text element to the list item
-//     listItem.appendChild(textElement);
-
-//     // Append the list item to the unordered list
-//     categoryListContainer.appendChild(listItem);
-//   });
-
-//   const container = domAddTransactionInputs.category;
-//   if (container) {
-//     container.innerHTML = "";
-//     container.appendChild(categoryListContainer);
-//   }
-// };
-
-export const createTransactionList = (
-  transactions: ITransaction[],
-  iconList: any
-) => {
+// Function to create transaction list
+export const createTransactionList = (transactions: any, iconList: any) => {
   const transactionList = domContainer.transactionList;
-
-  // Clear existing content
   transactionList.innerHTML = "";
 
   // Group transactions by date
-  const transactionsByDate: Record<string, ITransaction[]> =
-    transactions.reduce((acc, transaction) => {
-      const dateFormat = "MMM dd, yyyy";
-      const date = format(new Date(transaction.date), dateFormat);
-
-      // const date = new Date(transaction.date).toLocaleDateString();
+  const transactionsByDate = transactions.reduce(
+    (acc: any, transaction: any) => {
+      const date = new Date(transaction.date).toLocaleDateString();
 
       if (!acc[date]) {
         acc[date] = [];
@@ -251,7 +109,9 @@ export const createTransactionList = (
       acc[date].push(transaction);
 
       return acc;
-    }, {} as Record<string, ITransaction[]>);
+    },
+    {}
+  );
 
   // Sort dates in descending order
   const sortedDates = Object.keys(transactionsByDate).sort((a, b) => {
@@ -270,7 +130,7 @@ export const createTransactionList = (
     dateHeader.textContent = date;
     dateSection.appendChild(dateHeader);
 
-    transactionsByDate[date].forEach((transaction) => {
+    transactionsByDate[date].forEach((transaction: any) => {
       const liElement = document.createElement("li");
       liElement.classList.add("transaction-item");
 
@@ -280,7 +140,6 @@ export const createTransactionList = (
       const iconSpan = document.createElement("span");
       iconSpan.classList.add("item-icon");
 
-      // Find the icon for the category
       const iconClass = iconList.find(
         (iconItem: any) => iconItem.name === transaction.categoryName
       )?.icon;
@@ -288,8 +147,6 @@ export const createTransactionList = (
       if (iconClass) {
         const iconElement = document.createElement("i");
         iconElement.className = iconClass;
-
-        // Append the icon element to the icon span
         iconSpan.appendChild(iconElement);
       }
 
@@ -315,6 +172,12 @@ export const createTransactionList = (
       liElement.appendChild(categoryContainer);
       liElement.appendChild(amountSpan);
 
+      // Add a click event listener to the liElement
+      liElement.addEventListener("click", () => {
+        // Call a function to handle the click and display transaction details
+        handleTransactionClick(transaction);
+      });
+
       dateSection.appendChild(liElement);
     });
 
@@ -324,73 +187,96 @@ export const createTransactionList = (
   domContainer.transactionListContainer.appendChild(transactionList);
 };
 
-// export const createTransactionList = (transactions: ITransaction[]) => {
-//   const transactionList = domContainer.transactionList;
+// Function to handle transaction click and display details
+const handleTransactionClick = (transaction: any) => {
+  domTransactionDetailInputs.category.value = transaction.categoryName;
+  domTransactionDetailInputs.date.value = new Date(transaction.date)
+    .toISOString()
+    .split("T")[0];
+  domTransactionDetailInputs.note.value = transaction.note || ""; // Set an empty string if note is undefined
+  domTransactionDetailInputs.amount.value = transaction.amount;
+  console.log("Transaction details:", transaction);
 
-//   // Clear existing content
-//   transactionList.innerHTML = "";
+  domContainer.transactionDetailContainer.style.display = "block";
+};
 
-//   // Group transactions by date
-//   const transactionsByDate: Record<string, ITransaction[]> =
-//     transactions.reduce((acc, transaction) => {
-//       const date = new Date(transaction.date).toLocaleDateString();
+let currentPage = 1; // Initial page
 
-//       if (!acc[date]) {
-//         acc[date] = [];
-//       }
+export const setCurrentPage = (page: number) => {
+  currentPage = page;
+};
 
-//       acc[date].push(transaction);
+// Event listener for previous page link
+domButton.previousPageLink.addEventListener("click", async (e) => {
+  e.preventDefault();
+  if (currentPage > 1) {
+    currentPage--;
 
-//       return acc;
-//     }, {} as Record<string, ITransaction[]>);
+    let total = 0;
+    let size = 0;
 
-//   // Sort dates in descending order
-//   const sortedDates = Object.keys(transactionsByDate).sort((a, b) => {
-//     const dateA = new Date(a).getTime();
-//     const dateB = new Date(b).getTime();
-//     return dateB - dateA;
-//   });
+    const activeTabState: Record<string, boolean> = getActiveTab();
 
-//   // Iterate through sorted dates and create HTML elements
-//   for (const date of sortedDates) {
-//     const dateSection = document.createElement("div");
-//     dateSection.classList.add("date-section");
+    if (activeTabState["expense"]) {
+      const expenseTransaction = await getAllExpenseTransactions(currentPage);
+      createTransactionList(expenseTransaction.data, categoryIconList);
+      total = expenseTransaction.meta.total;
+      size = expenseTransaction.meta.size;
+    } else if (activeTabState["income"]) {
+      const incomeTransaction = await getAllIncomeTransactions(currentPage);
+      createTransactionList(incomeTransaction.data, categoryIconList);
+      total = incomeTransaction.meta.total;
+      size = incomeTransaction.meta.size;
+    } else {
+      const transaction = await getAllTransactionsPerPage(currentPage);
+      createTransactionList(transaction.data, categoryIconList);
+      total = transaction.meta.total;
+      size = transaction.meta.size;
+    }
+    domButton.nextPageLink.disabled = false;
+  }
+});
 
-//     const dateHeader = document.createElement("h3");
-//     dateHeader.classList.add("date-data");
-//     dateHeader.textContent = date;
-//     dateSection.appendChild(dateHeader);
+// Event listener for next page link
+domButton.nextPageLink.addEventListener("click", async (e) => {
+  try {
+    e.preventDefault();
+    const totalPages = 10;
+    if (currentPage < totalPages) {
+      currentPage++;
 
-//     transactionsByDate[date].forEach((transaction) => {
-//       const liElement = document.createElement("li");
-//       liElement.classList.add("transaction-item");
+      let total = 0;
+      let size = 0;
 
-//       const categorySpan = document.createElement("span");
-//       categorySpan.classList.add("item-title");
-//       categorySpan.textContent = transaction.categoryName;
+      const activeTabState = getActiveTab();
 
-//       const amountSpan = document.createElement("span");
-//       amountSpan.classList.add("item-amount");
+      if (activeTabState["expense"]) {
+        const expenseTransaction = await getAllExpenseTransactions(currentPage);
+        createTransactionList(expenseTransaction.data, categoryIconList);
+        total = expenseTransaction.meta.total;
+        size = expenseTransaction.meta.size;
+      } else if (activeTabState["income"]) {
+        const incomeTransaction = await getAllIncomeTransactions(currentPage);
+        createTransactionList(incomeTransaction.data, categoryIconList);
+        total = incomeTransaction.meta.total;
+        size = incomeTransaction.meta.size;
+      } else {
+        const transaction = await getAllTransactionsPerPage(currentPage);
+        createTransactionList(transaction.data, categoryIconList);
+        total = transaction.meta.total;
+        size = transaction.meta.size;
+      }
 
-//       if (transaction.categoryType === "expense") {
-//         amountSpan.style.color = "#f14c52";
-//         amountSpan.textContent = "-" + transaction.amount.toString();
-//       } else {
-//         amountSpan.style.color = "#2dba75";
-//         amountSpan.textContent = "+" + transaction.amount.toString();
-//       }
-
-//       liElement.appendChild(categorySpan);
-//       liElement.appendChild(amountSpan);
-
-//       dateSection.appendChild(liElement);
-//     });
-
-//     transactionList.appendChild(dateSection);
-//   }
-
-//   domContainer.transactionListContainer.appendChild(transactionList);
-// };
+      if (Math.ceil(total / size) === currentPage) {
+        handleAlert("Last page");
+        domButton.nextPageLink.disabled = true;
+      }
+    }
+  } catch (error: unknown) {
+    handleError("error");
+    console.log(error);
+  }
+});
 
 // NavBar Utils
 
@@ -411,10 +297,10 @@ export const incomeTabIsClicked = () => {
   addClassList(navItems.income as HTMLElement, "active-item");
 };
 
-export const budgetTabIsClicked = () => {
-  addClassList(navLists.budget as HTMLElement, "active-list");
-  addClassList(navItems.budget as HTMLElement, "active-item");
-};
+// export const budgetTabIsClicked = () => {
+//   addClassList(navLists.budget as HTMLElement, "active-list");
+//   addClassList(navItems.budget as HTMLElement, "active-item");
+// };
 
 // NotClicked Navbars
 
@@ -433,23 +319,24 @@ export const incomeTabIsNotClicked = () => {
   removeClassList(navItems.income as HTMLElement, "active-item");
 };
 
-export const budgetTabIsNotClicked = () => {
-  removeClassList(navLists.budget as HTMLElement, "active-list");
-  removeClassList(navItems.budget as HTMLElement, "active-item");
-};
+// export const budgetTabIsNotClicked = () => {
+//   removeClassList(navLists.budget as HTMLElement, "active-list");
+//   removeClassList(navItems.budget as HTMLElement, "active-item");
+// };
 
 export const dashboardTabIsActive = () => {
   dashboardTabIsClicked();
   expenseTabIsNotClicked();
   incomeTabIsNotClicked();
-  budgetTabIsNotClicked();
+  // budgetTabIsNotClicked();
+  setActiveTab("dashboard");
 };
 
 export const expenseTabIsActive = () => {
   expenseTabIsClicked();
   dashboardTabIsNotClicked();
   incomeTabIsNotClicked();
-  budgetTabIsNotClicked();
+  // budgetTabIsNotClicked();
   setActiveTab("expense");
 };
 
@@ -457,7 +344,7 @@ export const incomeTabIsActive = () => {
   dashboardTabIsNotClicked();
   expenseTabIsNotClicked();
   incomeTabIsClicked();
-  budgetTabIsNotClicked();
+  // budgetTabIsNotClicked();
   setActiveTab("income");
 };
 
@@ -465,7 +352,7 @@ export const budgetTabIsActive = () => {
   dashboardTabIsNotClicked();
   expenseTabIsNotClicked();
   incomeTabIsNotClicked();
-  budgetTabIsClicked();
+  // budgetTabIsClicked();
 };
 
 export const userTabIsClicked = () => {

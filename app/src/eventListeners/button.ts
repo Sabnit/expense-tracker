@@ -2,7 +2,6 @@ import domContainer from "../dom/expenseApp/container";
 import {
   dashboardTabIsActive,
   hideElement,
-  setActiveTab,
   showElement,
 } from "../utils/expenseApp/commonUtils";
 import domButton from "../dom/expenseApp/button";
@@ -10,7 +9,7 @@ import domButton from "../dom/expenseApp/button";
 import { addNewTransaction } from "../components/expenses/addTransaction";
 import iconItems from "../dom/expenseApp/icon";
 import { navLists } from "../dom/expenseApp/navItems";
-import { renderDashboard } from "../components/expenses/expenseTab";
+import { handleSuccess } from "../utils/messageHandler";
 
 const buttonEventListeners = () => {
   domButton.addTransactionBtn?.addEventListener("click", () => {
@@ -92,6 +91,7 @@ const buttonEventListeners = () => {
       modalOverlay1.style.display = "none";
       highlightSection1.style.display = "none";
       document.body.removeChild(highlightSection1);
+      handleSuccess("Transaction added");
     });
 
     domButton.logoutBtn?.addEventListener("click", function () {

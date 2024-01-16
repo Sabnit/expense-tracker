@@ -11,7 +11,7 @@ import {
   signupInputFields,
   signupLinks,
 } from "../../dom/signup/domElements";
-import { handleError } from "../error";
+import { handleError } from "../messageHandler";
 import {
   clearInput,
   hideElement,

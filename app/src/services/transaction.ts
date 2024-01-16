@@ -3,8 +3,7 @@ import {
   INCOME_URL,
   TRANSACTION_URL,
 } from "../constants/expenseApp";
-import { showError } from "../utils/auth/commonUtils";
-import { handleError } from "../utils/error";
+import { handleError } from "../utils/messageHandler";
 import { get, post, update } from "../utils/http";
 
 export const storeTransaction = async (data: any) => {
@@ -18,52 +17,56 @@ export const storeTransaction = async (data: any) => {
     }
   } catch (error: unknown) {
     handleError((error as Error).message);
+    console.log(error);
   }
 };
 
-export const getAllTransactions = async () => {
+export const getAllTransactionsPerPage = async (page: number) => {
   try {
     const accessToken = localStorage.getItem("accessToken");
 
     if (accessToken) {
-      const response = await get(TRANSACTION_URL, {
+      const response = await get(`${TRANSACTION_URL}?page=${page}`, {
         Authorization: `Bearer ${accessToken}`,
       });
-      return response.data;
+
+      return response;
     }
   } catch (error: unknown) {
-    console.log("getallTra");
     handleError((error as Error).message);
+    console.log(error);
   }
 };
 
-export const getAllExpenseTransactions = async () => {
+export const getAllExpenseTransactions = async (page: number) => {
   try {
     const accessToken = localStorage.getItem("accessToken");
 
     if (accessToken) {
-      const response = await get(EXPENSE_URL, {
+      const response = await get(`${EXPENSE_URL}&page=${page}`, {
         Authorization: `Bearer ${accessToken}`,
       });
-      return response.data;
+      return response;
     }
   } catch (error) {
     handleError((error as Error).message);
+    console.log(error);
   }
 };
 
-export const getAllIncomeTransactions = async () => {
+export const getAllIncomeTransactions = async (page: number) => {
   try {
     const accessToken = localStorage.getItem("accessToken");
 
     if (accessToken) {
-      const response = await get(INCOME_URL, {
+      const response = await get(`${INCOME_URL}&page=${page}`, {
         Authorization: `Bearer ${accessToken}`,
       });
-      return response.data;
+      return response;
     }
   } catch (error) {
     handleError((error as Error).message);
+    console.log(error);
   }
 };
 
@@ -79,5 +82,6 @@ export const updateTransaction = async () => {
     }
   } catch (error) {
     handleError((error as Error).message);
+    console.log(error);
   }
 };

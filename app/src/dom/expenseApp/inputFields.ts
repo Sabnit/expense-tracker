@@ -15,8 +15,12 @@ export const domAddTransactionInputs = {
 };
 
 export const domTransactionDetailInputs = {
-  category: document.getElementById("transaction-detail-category"),
-  date: document.getElementById("transaction-detail-date"),
-  note: document.getElementById("transaction-detail-note"),
-  amount: document.getElementById("transaction-detail-amount"),
+  category: document.getElementById(
+    "transaction-detail-category"
+  ) as HTMLSelectElement,
+  date: document.getElementById("transaction-detail-date") as HTMLInputElement,
+  note: document.getElementById("transaction-detail-note") as HTMLInputElement,
+  amount: document.getElementById(
+    "transaction-detail-amount"
+  ) as HTMLInputElement,
 };
