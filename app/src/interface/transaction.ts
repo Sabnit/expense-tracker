@@ -3,4 +3,5 @@ export interface ITransaction {
   amount: number;
   categoryName: string;
   categoryType: string;
+  note?: string;
 }

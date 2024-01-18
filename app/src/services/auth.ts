@@ -9,7 +9,7 @@ export const loginAuth = async (data: any) => {
     localStorage.setItem("accessToken", response.accessToken);
 
     await checkLoggedIn();
-  } catch (e: any) {
+  } catch (e: unknown) {
     showError();
   }
 };

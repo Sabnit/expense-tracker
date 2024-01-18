@@ -6,11 +6,7 @@ import {
 
 import domContainer from "../dom/expenseApp/container";
 import { navLists } from "../dom/expenseApp/navItems";
-import {
-  getAllExpenseTransactions,
-  getAllIncomeTransactions,
-  getAllTransactionsPerPage,
-} from "../services/transaction";
+
 import {
   budgetTabIsActive,
   dashboardTabIsActive,

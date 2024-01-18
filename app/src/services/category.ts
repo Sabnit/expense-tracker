@@ -1,5 +1,5 @@
 import { CATEGORY_URL } from "../constants/expenseApp";
-import { handleError } from "../utils/error";
+import { handleError } from "../utils/messageHandler";
 
 import { get } from "../utils/http";
 

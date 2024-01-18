@@ -9,16 +9,31 @@ import domButton from "../dom/expenseApp/button";
 import { addNewTransaction } from "../components/expenses/addTransaction";
 import iconItems from "../dom/expenseApp/icon";
 import { navLists } from "../dom/expenseApp/navItems";
-import { handleSuccess } from "../utils/messageHandler";
+import { handleError, handleSuccess } from "../utils/messageHandler";
+import { domAddTransactionInputs } from "../dom/expenseApp/inputFields";
 
 const buttonEventListeners = () => {
   domButton.addTransactionBtn?.addEventListener("click", () => {
     showElement(domContainer.addTransactionForm);
   });
 
-  domButton.submitTransactionBtn?.addEventListener("click", () => {
+  domButton.submitTransactionBtn?.addEventListener("click", (event) => {
     hideElement(domContainer.addTransactionForm);
 
+    const category = domAddTransactionInputs.category.value;
+    const date = domAddTransactionInputs.date.value;
+    const note = domAddTransactionInputs.note.value;
+    const amount = domAddTransactionInputs.note.value;
+
+    // Check if required fields are filled
+    if (category === "select" || !date || !amount) {
+      handleError(
+        "Please fill in all required fields (Category, Date, Amount)."
+      );
+      event.preventDefault();
+      domButton.submitTransactionBtn.disabled = true;
+    }
+    domButton.submitTransactionBtn.disabled = false;
     addNewTransaction();
   });
 

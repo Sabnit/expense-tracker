@@ -2,21 +2,21 @@ const domButton = {
   loginBtn: document.getElementById("login-btn"),
   addTransactionBtn: document?.getElementById(
     "add-transaction-button"
-  ) as HTMLElement,
+  ) as HTMLButtonElement,
   submitTransactionBtn: document?.getElementById(
     "submit-transaction-button"
-  ) as HTMLElement,
+  ) as HTMLButtonElement,
   saveTransactionBtn: document?.getElementById("save-button") as HTMLElement,
   deleteTransactionBtn: document?.getElementById(
     "delete-button"
-  ) as HTMLElement,
+  ) as HTMLButtonElement,
   cancelTransactionBtn: document?.getElementById(
     "cancel-button"
-  ) as HTMLElement,
+  ) as HTMLButtonElement,
   logoutBtn: document?.getElementById("logout-btn"),
   previousPageLink: document.getElementById(
     "previous-page-navigation"
-  ) as HTMLAnchorElement,
+  ) as HTMLButtonElement,
   nextPageLink: document.getElementById(
     "next-page-navigation"
   ) as HTMLButtonElement,
