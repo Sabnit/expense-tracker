@@ -62,7 +62,10 @@ export const initializeApp = () => {
   renderDashboard();
 };
 
-export const getCategoryList = (categoryList: any, category: string) => {
+export const getCategoryList = (
+  categoryList: ICategory[],
+  category: string
+) => {
   return categoryList
     .filter((item: ICategory) => item.type === category)
     .map((item: ICategory) => item.category);
@@ -81,7 +84,7 @@ export const createList = (list: any) => {
   defaultOption.value = "";
   defaultOption.text = "Select a category";
   domInputFields.categorySelect.add(defaultOption);
-  domTransactionDetailInputs.category.append(defaultOption);
+  // domTransactionDetailInputs.category.append(defaultOption);
 
   list.forEach((category: string) => {
     const option = document.createElement("option");
@@ -89,7 +92,7 @@ export const createList = (list: any) => {
     option.value = category;
     option.text = category;
     domInputFields.categorySelect.add(option);
-    domTransactionDetailInputs.category.add(option);
+    // domTransactionDetailInputs.category.add(option);
   });
 };
 // Function to create transaction list
@@ -243,33 +246,34 @@ domButton.nextPageLink.addEventListener("click", async (e) => {
     e.preventDefault();
     const totalPages = 10;
     if (currentPage < totalPages) {
-      currentPage++;
-
       let total = 0;
       let size = 0;
 
-      const activeTabState = getActiveTab();
-
-      if (activeTabState["expense"]) {
-        const expenseTransaction = await getAllExpenseTransactions(currentPage);
-        createTransactionList(expenseTransaction.data, categoryIconList);
-        total = expenseTransaction.meta.total;
-        size = expenseTransaction.meta.size;
-      } else if (activeTabState["income"]) {
-        const incomeTransaction = await getAllIncomeTransactions(currentPage);
-        createTransactionList(incomeTransaction.data, categoryIconList);
-        total = incomeTransaction.meta.total;
-        size = incomeTransaction.meta.size;
-      } else {
-        const transaction = await getAllTransactionsPerPage(currentPage);
-        createTransactionList(transaction.data, categoryIconList);
-        total = transaction.meta.total;
-        size = transaction.meta.size;
-      }
+      handleAlert("Last page");
 
       if (Math.ceil(total / size) === currentPage) {
-        handleAlert("Last page");
+        currentPage++;
         domButton.nextPageLink.disabled = true;
+        const activeTabState = getActiveTab();
+
+        if (activeTabState["expense"]) {
+          const expenseTransaction = await getAllExpenseTransactions(
+            currentPage
+          );
+          createTransactionList(expenseTransaction.data, categoryIconList);
+          total = expenseTransaction.meta.total;
+          size = expenseTransaction.meta.size;
+        } else if (activeTabState["income"]) {
+          const incomeTransaction = await getAllIncomeTransactions(currentPage);
+          createTransactionList(incomeTransaction.data, categoryIconList);
+          total = incomeTransaction.meta.total;
+          size = incomeTransaction.meta.size;
+        } else {
+          const transaction = await getAllTransactionsPerPage(currentPage);
+          createTransactionList(transaction.data, categoryIconList);
+          total = transaction.meta.total;
+          size = transaction.meta.size;
+        }
       }
     }
   } catch (error: unknown) {
